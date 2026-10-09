@@ -207,25 +207,63 @@ Checks you can run by hand at any time:
 
 ## Auditor judgment (human gate)
 
-> **[Neil — to write]:** why I approved R-01 to R-03 and R-05 to R-08, why I changed R-04 and R-09, and why I rejected R-10 (grants) as a separate risk.
+### Gate decisions
 
-> **[Neil — to write]:** my decision on challenge #5 (is the Direct Payments Limited Assurance opinion, A-16, a repeat finding on R-08's theme that raises likelihood to 4?).
+For **R-04**, I changed the scope because the original risk overlapped with R-08. R-08 already covers care and education placements, so keeping those suppliers inside R-04 would mean testing the same population twice. At the same time, I did not want to narrow R-04 too much, because that would leave grants, premises and agency staff uncovered. My final decision was to keep R-04 for all suppliers with no live notice except the placement population covered by R-08.
 
-> **[Neil — to write]:** my decision on challenge #8 (is school purchasing in or out of scope, and if out, the reason to record in the memo?).
+For **R-09**, I changed the likelihood from 3 back to 2. The main reason is that the spend data cannot show whether a waiver was improperly approved. That evidence would have to come from the approval records. I also did not think the reason for increasing the likelihood was strong, because saying that high-value contracts have higher stakes is about impact, not likelihood. I still kept the risk in the audit because waiver controls are important, but the lower likelihood is better supported by the evidence.
 
-> **[Neil — to write]:** the sign-off decision for `outputs/review.md` (Sign off / Return to the team) and the comment that goes with it.
+For **R-10**, I rejected it as a separate risk because grants stay inside the revised R-04. I did not want to exclude grants from the audit, especially because the procurement rules also apply to them and there was significant grant spend with no notice. But the same issue did not need two separate risks. Keeping grants under R-04 avoids duplication while still making sure they are tested.
+
+### Challenge #5: why R-08 stays at likelihood 3
+
+I kept R-08 at likelihood 3 because there is evidence that supports investigating the issue, but not enough to call it almost certain. The data show many placement suppliers with no published notice, but placements can have legitimate exceptions or different procurement arrangements. There was also a previous Reasonable Assurance opinion, which gives some evidence in the other direction.
+
+So L3 felt more balanced to me. The pattern is strong enough to test, but the missing notice alone does not prove that the control failed in most cases.
+
+### Challenge #8: why schools are out of scope
+
+I kept schools' own purchasing out of scope because this audit is focused on central council procurement. The school-related names in the spend data are mainly independent SEN schools or care providers that the council pays for placements, and those payments are already covered by R-08.
+
+The separate school audit findings relate to how individual schools manage their own purchasing and budgets. That is a different control environment, and it is already reviewed through school audits. Including it here would expand the audit beyond the original procurement scope and mix two different types of purchasing activity.
+
+### Sign-off, and why 15 samples for R-02
+
+I signed off because, after the changes, I felt the final audit pack had reasonable coverage without unnecessary duplication. The main risks identified by the analytics were still included, overlapping populations were separated, and weaker assumptions were challenged instead of accepted automatically.
+
+For R-02, I kept 15 samples. The builder uses 15 for every risk in this score band, so R-02 is not sampled less than the score-12 risks. However, with 323 clustered payments and 241 split-purchase groups, 15 is already a small share of the flagged population. Reducing it further would make it difficult to test whether the pattern is actually meaningful. R-02's lower priority is reflected in its score of 8, not in a smaller sample size.
 
 ## Reflection
 
-> **[Neil — to write]:** what the human gate changed in the final pack compared with what the agents proposed.
+### What the human gate changed
 
-> **[Neil — to write]:** what I would do differently if I built this again.
+The human gate changed both the scope of the final audit plan and some of the judgment behind the risk ratings.
+
+R-04 and R-08 initially overlapped because the broader no-notice population included care and education placements. The final review separated them, so placements are handled under R-08 while the other supplier groups remain under R-04. I also checked that narrowing R-04 did not accidentally remove grants, premises or agency staff from the audit.
+
+R-09 is a different example. The AI originally rated it at likelihood 2. In my first gate decision, I changed it to likelihood 3 using reasoning from the guide's example. When I reviewed that decision again, I realized the justification was about the seriousness of high-value contracts, which relates to impact rather than the probability of a waiver problem. I therefore moved R-09 back to likelihood 2.
+
+This showed me that the human gate does not automatically make the output correct. A human can also introduce a weak decision, especially when relying too closely on an example. The value of the gate came from reviewing both the AI's recommendations and my own earlier decisions against the actual evidence.
+
+If I had simply accepted everything without that second review, the final pack could have contained overlapping testing, gaps in supplier coverage, and a risk rating that was not supported by the evidence.
+
+### What I would do differently
+
+The first thing I would do differently is avoid copying the guide example too directly into my first decisions. I initially treated some of the example decisions as conclusions I should follow, instead of using them only as guidance. Next time I would separate the example from the actual evidence first, then make my own decision from the data.
+
+I would also make sure I start Claude Code in the correct project folder before doing any work. Starting in the wrong directory created unnecessary confusion and made it harder to tell whether the right files, skills and agents were being used.
+
+Finally, after adding or changing skills and agents, I would restart the session earlier. I learned that a running session does not automatically load newly created skills or agents. Restarting sooner would have avoided debugging behavior that was really caused by the session not seeing the updated configuration.
+
+Overall, next time I would spend more time validating the setup and the evidence before running the workflow. That would reduce rework and keep the human review focused on audit judgment instead of fixing avoidable setup issues.
+
+### Part A compared with Part B
 
 > **[Neil — to write]:** comparison with Part B (the deployed harness): what carried over, what had to change, what each setup is better at.
 
 ## Part B
 
-Deployed harness: <URL — to add>
+Deployed harness: https://neil-audit-planner.fly.dev/ (code: https://github.com/neiltd/audit-planner-harness)
 
 ## Repo layout
 
