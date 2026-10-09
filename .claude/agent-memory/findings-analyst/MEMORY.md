@@ -1,0 +1,1 @@
+- [Committee PDF extraction quirks](committee-pdf-extraction-quirks.md) — dropped dashes in plain mode, blank merged cells, render pages for shading/RAG

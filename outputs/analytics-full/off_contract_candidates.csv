@@ -1,0 +1,20 @@
+supplier_norm,notice_supplier_norm,ratio,method,notice_ids
+ABC TRAVEL WOKINGHAM T A ABC TRAVEL,ABC TRAVEL,0.444,contained>=6,West Berkshire Council Transport Dynamic Purchasing System (DPS) Ongoing awards July-Sept 2025;West Berkshire Council Transport - Dynamic Purchasing System (DPS) ongoing awards Oct-Dec 2025;West Berkshire Council Transport - Dynamic Purchasing System (DPS) ongoing awards Jan-Mar 2026
+ABC TRAVEL WOKINGHAM T A ABC TRAVEL,ABC TRAVEL WOKINGHAM,0.727,contained>=6,P00000342;P00000342 Jan-Mar 2023
+BROADWAY CARS,AIR PREMIER CARS BERKSHIRE T A BROADWAY CARS,0.456,contained>=6,West Berkshire Council Transport Dynamic Purchasing System (DPS) Ongoing awards July-Sept 2025
+BROADWAY CARS,BROADWAY CARS NEWBURY,0.765,contained>=6,P00000342
+D J TRAVEL,DJ TRAVEL,0.947,ratio>=0.85,P00000342 Jan-Mar 2023
+ELITE SECURITY GROUP,ELITE ALARM MONITORING SERVICES T A ELITE SECURITY GROUP,0.526,contained>=6,IT-402-1200-P00001200 - AWARD
+GLEN CLEANING COMPANY,GLEN CLEANING,0.765,contained>=6,IT-402-1488-P00001488 - AWARD
+MARK DILLON T A PENMAR TRANSPORT,PENMAR TRANSPORT,0.667,contained>=6,West Berkshire Council Transport - Dynamic Purchasing System (DPS) ongoing awards Oct-Dec 2025;P00000342
+MRS M F RICHARDSON T A MFR CONTRACTS,MFR CONTRACTS,0.531,contained>=6,P00000342 Oct-Dec 2024
+N MEHMOOD T A A STAR EXECUTIVE CARS,A STAR EXECUTIVE CARS,0.75,contained>=6,West Berkshire Council Transport Dynamic Purchasing System (DPS) Ongoing awards July-Sept 2025;West Berkshire Council Transport - Dynamic Purchasing System (DPS) ongoing awards Jan-Mar 2026
+NADEEM MIRZA TRADING AS PARKER TRAVELS,PARKER TRAVEL,0.51,contained>=6,P00001312
+POTTINGER S HIRE SERVICE,POTTINGERS HIRE SERVICES,0.958,ratio>=0.85,West Berkshire Council Transport Dynamic Purchasing System (DPS) Ongoing awards July-Sept 2025
+S RICHARDS T AS K RICKETTS S RICHARDS TAXIS,K RICKETTS S RICHARDS,0.656,contained>=6,P00000342 Oct-Dec 2022
+S RICHARDS T AS K RICKETTS S RICHARDS TAXIS,K RICKETTS S RICHARDS TAXIS,0.771,contained>=6,IT-402-1542-P00001542 - AWARD
+SIKANDAR HAYAT T A PROMPT CARS,PROMPT CARS,0.537,contained>=6,West Berkshire Council Transport Dynamic Purchasing System (DPS) Ongoing awards July-Sept 2025;West Berkshire Council Transport - Dynamic Purchasing System (DPS) ongoing awards Oct-Dec 2025;West Berkshire Council Transport - Dynamic Purchasing System (DPS) ongoing awards Jan-Mar 2026;P00000342 Oct-Dec 2024
+SOUTHERN COACH LINES,SOUTHERN COACH LINES T A ALDERMASTON COACH LINES,0.588,contained>=6,West Berkshire Council Transport Dynamic Purchasing System (DPS) Ongoing awards July-Sept 2025
+SWAN ADVOCACY,SWAN ADVOCACY NETWORK,0.765,contained>=6,IT-402-974-P00000974 - AWARD
+THE ADVOCACY PEOPLE FORMERLY SEAP,THE ADVOCACY PEOPLE,0.731,contained>=6,IT-402-974-P00000974 - AWARD
+WCL UK TRADING AS EVERYTHING ICT,WCL UK,0.316,contained>=6,P00001021

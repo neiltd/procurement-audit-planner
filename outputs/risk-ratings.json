@@ -1,0 +1,191 @@
+{
+  "method": {
+    "choices": [
+      {
+        "discrepancy": "D-01",
+        "used": "Table 1: Medium impact scores 3",
+        "marked": "Paragraph 4.3: 'Medium (2)'",
+        "reason": "Labels and scores come from the scale table the impact is read against; paragraph 4.3 repeats the score of Minor and leaves no score of 3."
+      },
+      {
+        "discrepancy": "D-02",
+        "used": "The £ amounts in the Financial loss column of Table 1",
+        "marked": "The overlapping % of annual budget ranges",
+        "reason": "The £ amounts rise without overlap, so an exposure maps onto one score; the % ranges overlap between Medium and Major."
+      },
+      {
+        "discrepancy": "D-03",
+        "used": "Table 4 band names and score ranges: scores 8-12 are 'Medium - High' (Amber)",
+        "marked": "Figure 1 matrix cell label 'High' for those cells, shown in brackets",
+        "reason": "Table 4 carries the escalation and response for each band, so the band is read from it."
+      },
+      {
+        "discrepancy": "D-05",
+        "used": "The current level: likelihood and impact with existing controls, as Table 4 'Current Score' and Appendix 2 'Current risk rating'",
+        "marked": "Section 4.1 calls the same level 'Actual'; gross and expected levels are not rated",
+        "reason": "The evidence (spend data and past audit opinions) shows the position with controls already in place, which is what both names describe."
+      },
+      {
+        "discrepancy": "D-09",
+        "used": "Table 4: only Extreme (15-25) is added to the Corporate Risk Register",
+        "marked": "Figure 4: score 9 or above goes to the Corporate Risk Register",
+        "reason": "Table 4 is the band table the score is read against and carries the escalation for each band.",
+        "mark": {"min_score": 9, "max_score": 14, "text": "would go to the Corporate Risk Register under Figure 4 (score 9 or above)"}
+      }
+    ],
+    "not_affected": [
+      {
+        "discrepancy": "D-06",
+        "reason": "A version label of the external appetite guidance; no likelihood, impact or band in this register uses it."
+      }
+    ]
+  },
+  "risks": [
+    {
+      "id": "R-01",
+      "title": "Spend structured to stay just below the quote threshold",
+      "description": "{{$.tests.threshold_clustering.by_tier.25000.rows}} payments worth {{$.tests.threshold_clustering.by_tier.25000.gbp|gbp}} sit in the band just below the {{$.thresholds.quote_threshold.value|gbp}} quote threshold, and {{$.tests.split_purchases.by_tier.25000.groups}} groups of two or more payments to one supplier within {{$.tests.split_purchases.parameters.window_days}} days each stay under that threshold while their total reaches it. Both patterns are indicators that a requirement may have been divided or valued to avoid three quotes via the Portal [rule:CPR-65] and the rule against splitting [rule:CPR-13]. Many groups are recurring care and education placement payments, which the auditor should expect to explain a share of the flags.",
+      "likelihood": {
+        "score": 4,
+        "justification": "L4: two different tests flag the same risk, payments clustered just below the quote threshold [metric:$.tests.threshold_clustering.by_tier.25000.rows] and payment groups crossing it [metric:$.tests.split_purchases.by_tier.25000.groups]; only part of the split groups share one payment run [metric:$.tests.split_purchases.by_tier.25000.same_timestamp_groups], so analytics.json does not explain the rest away. The Reasonable Assurance opinion on Contract Letting argues the other way [history:A-01] but does not move the rubric row."
+      },
+      "impact": {
+        "score": 3,
+        "criterion": "Compliance (litigation, regulatory, contract)",
+        "justification": "C3: the flagged items sit in the tier from the quote threshold up to the intranet Threshold, where three quotes via the Procurement Portal are required [rule:CPR-65] [rule:CPR-67]; row C4 does not apply because the Threshold-tied tiers were not tested."
+      },
+      "repeat_uplift": null,
+      "proposed_focus": "Pull the clustered payments and the split groups in the general procurement and premises tags first; for each, request the quote record via the Portal [rule:CPR-65] and ask whether the payments form one requirement under the anti-splitting rule [rule:CPR-13] [rule:CPR-14]. Treat recurring placement invoices as a lower-priority stratum."
+    },
+    {
+      "id": "R-02",
+      "title": "Spend kept at or just below the one-quote level",
+      "description": "{{$.tests.threshold_clustering.by_tier.1000.rows}} payments worth {{$.tests.threshold_clustering.by_tier.1000.gbp|gbp}} sit just at or below {{$.thresholds.tiers[0].value|gbp}}, and {{$.tests.split_purchases.by_tier.1000.groups}} same-supplier payment groups each stay under that level while their total exceeds it. Above that level at least one quote is required [rule:CPR-64]; the patterns are indicators to test against the anti-splitting rule [rule:CPR-13].",
+      "likelihood": {
+        "score": 4,
+        "justification": "L4: two different tests flag the same risk, clustering just below the one-quote level [metric:$.tests.threshold_clustering.by_tier.1000.rows] and same-supplier groups crossing it [metric:$.tests.split_purchases.by_tier.1000.groups]; some groups share one payment run [metric:$.tests.split_purchases.by_tier.1000.same_timestamp_groups], which leaves most unexplained. Contract Letting was rated Reasonable Assurance [history:A-01]."
+      },
+      "impact": {
+        "score": 2,
+        "criterion": "Compliance (litigation, regulatory, contract)",
+        "justification": "C2: the flagged items sit below the quote threshold, in the band where one quote is sought [rule:CPR-64]."
+      },
+      "repeat_uplift": null,
+      "proposed_focus": "Sample clustered payments and split groups outside the placement tags and request the single quote or written purchase evidence for each [rule:CPR-64] [rule:CPR-35]."
+    },
+    {
+      "id": "R-03",
+      "title": "Payment groups crossing the Key Decision and Executive approval levels",
+      "description": "{{$.tests.split_purchases.by_tier.500000.groups}} same-supplier payment groups within {{$.tests.split_purchases.parameters.window_days}} days total at least {{$.thresholds.tiers[2].value|gbp}} while each payment stays below it, and {{$.tests.split_purchases.by_tier.2500000.groups}} do the same at {{$.thresholds.tiers[3].value|gbp}}. Awards over the first level are Key Decisions [rule:CPR-04] [rule:CPR-60] and the second needs Executive approval [rule:CPR-62]. These tiers are noisy: instalments under existing term contracts and recurring placement fees can produce the pattern, and the tier £ figures double-count groups that appear at more than one tier.",
+      "likelihood": {
+        "score": 3,
+        "justification": "L3: one test flags groups at the higher tiers [metric:$.tests.split_purchases.by_tier.500000.groups] [metric:$.tests.split_purchases.by_tier.2500000.groups] and none of them share one payment run [metric:$.tests.split_purchases.by_tier.500000.same_timestamp_groups], so analytics.json does not explain them away. Clustering below these levels flagged nothing [metric:$.tests.threshold_clustering.by_tier.500000.rows], so row L4 does not apply. Contract Letting was rated Reasonable Assurance [history:A-01]."
+      },
+      "impact": {
+        "score": 4,
+        "criterion": "Compliance (litigation, regulatory, contract)",
+        "justification": "C4: the flagged groups are at the Key Decision level and above, where the award must be a Key Decision [rule:CPR-04] or go to the Executive [rule:CPR-62]."
+      },
+      "repeat_uplift": null,
+      "proposed_focus": "For each higher-tier group, identify the contract the payments are made under and request the Key Decision or Executive approval record for the award [rule:CPR-04] [rule:CPR-60] [rule:CPR-62]; close groups that trace to an approved term contract."
+    },
+    {
+      "id": "R-04",
+      "title": "Suppliers above the publication threshold with no live Contracts Finder notice",
+      "description": "{{$.tests.off_contract.counts.total}} of {{$.tests.off_contract.population.suppliers_tested}} suppliers whose annualised estimate reaches {{$.thresholds.publication_threshold.value|gbp}} have no live notice matched by exact normalised name ({{$.tests.off_contract.counts.by_tag.general_procurement}} in general procurement); {{$.tests.off_contract.with_candidate_name}} more have a near-miss candidate name listed separately. Contracts at this level need a published notice [rule:CPR-66] and quotes via the Portal [rule:CPR-65]. The notice export starts in 2021 and matching is by name only, so 'no notice found' is a prompt to request contract evidence, not evidence that none exists.",
+      "likelihood": {
+        "score": 3,
+        "justification": "L3: one test flags suppliers above the publication threshold with no live notice [metric:$.tests.off_contract.counts.total], including general procurement suppliers that the placement and grant tags do not explain [metric:$.tests.off_contract.counts.by_tag.general_procurement]. The Reasonable Assurance opinion on Contract Letting argues the other way [history:A-01]."
+      },
+      "impact": {
+        "score": 3,
+        "criterion": "Compliance (litigation, regulatory, contract)",
+        "justification": "C3: the test covers suppliers from the publication threshold up, the tier where a notice on the CDP and three Portal quotes are required [rule:CPR-66] [rule:CPR-65]; row C4 would need the Threshold-tied rules, which were not tested."
+      },
+      "repeat_uplift": null,
+      "proposed_focus": "Start with the general procurement suppliers in the list and the near-miss candidates; for each, request the contract, its award notice [rule:CPR-66] and its entry on the contracts register [rule:CPR-07]. Do not question suppliers below the publication threshold."
+    },
+    {
+      "id": "R-05",
+      "title": "Payments to suppliers whose every matched notice ended before the spend window",
+      "description": "{{$.tests.expired_notice_spend.counts.total}} suppliers, paid {{$.tests.expired_notice_spend.gbp.total|gbp}} in the window, match only notices that ended before the window started. An extension provided for in a contract needs S151 approval [rule:CPR-76]; a newer contract with no notice may also explain the payments.",
+      "likelihood": {
+        "score": 3,
+        "justification": "L3: one test flags suppliers paid after every matched notice ended [metric:$.tests.expired_notice_spend.counts.total] [metric:$.tests.expired_notice_spend.gbp.total], and analytics.json records no benign pattern for them. Contract Letting was rated Reasonable Assurance [history:A-01]."
+      },
+      "impact": {
+        "score": 3,
+        "criterion": "Compliance (litigation, regulatory, contract)",
+        "justification": "C3: the matched notices are Contracts Finder awards, published from the quote threshold tier [rule:CPR-66], and continuing to pay needs an approved extension [rule:CPR-76]; no metric places the flagged items at the Key Decision level, so row C4 does not apply."
+      },
+      "repeat_uplift": null,
+      "proposed_focus": "For each flagged supplier, request the S151 extension approval [rule:CPR-76] or the current contract and its award record [rule:CPR-38]."
+    },
+    {
+      "id": "R-06",
+      "title": "Annualised spend above the awarded contract value without a recorded variation",
+      "description": "{{$.tests.spend_vs_award.counts.total}} of {{$.tests.spend_vs_award.eligible_suppliers}} suppliers matched to one live single-supplier notice show an annualised estimate at least {{$.tests.spend_vs_award.parameters.ratio_flag}} times the award's annual value. A variation of scope or value needs prior approval [rule:CPR-77] [rule:CPR-78]. Award values may be estimates or maxima, and annualising a 3-month total can overstate a lumpy year.",
+      "likelihood": {
+        "score": 3,
+        "justification": "L3: one test flags spend beyond the award's annual value [metric:$.tests.spend_vs_award.counts.total] [metric:$.tests.spend_vs_award.gbp.total], with no benign pattern recorded in analytics.json. Contract Letting was rated Reasonable Assurance [history:A-01]."
+      },
+      "impact": {
+        "score": 3,
+        "criterion": "Compliance (litigation, regulatory, contract)",
+        "justification": "C3: the flagged contracts are published awards from the quote threshold tier upward [rule:CPR-66], and a variation needs Monitoring Officer and S151 approval [rule:CPR-77]; row C4 nearly applied because a variation above the Threshold goes to the relevant board [rule:CPR-78], but no metric tiers the flagged awards."
+      },
+      "repeat_uplift": null,
+      "proposed_focus": "For each flagged supplier, compare actual spend to date with the award and request any variation approval [rule:CPR-77] [rule:CPR-78] or extension record [rule:CPR-76]."
+    },
+    {
+      "id": "R-07",
+      "title": "Repeat payments of the same amount to the same supplier within a week",
+      "description": "{{$.tests.duplicates.different_dates.items}} supplier and amount pairs recur on different payment dates within {{$.tests.duplicates.parameters.window_days}} days, with a repeat value of {{$.tests.duplicates.different_dates.gbp_repeat_value|gbp}}; a further {{$.tests.duplicates.same_timestamp.items}} pairs recur within one payment run (repeat value {{$.tests.duplicates.same_timestamp.gbp_repeat_value|gbp}}), mostly per-client placement invoices at a standard rate. No Contract Procedure Rule sets this test; it is a payment-control indicator tied to the written evidence each purchase needs [rule:CPR-35]. The repeat value is an upper bound on money at stake, not a loss.",
+      "likelihood": {
+        "score": 3,
+        "justification": "L3: one test flags repeat amounts on different payment dates [metric:$.tests.duplicates.different_dates.items], which the one-payment-run pattern does not explain. The same-run repeats [metric:$.tests.duplicates.same_timestamp.items] read as payment runs and alone would sit at row L2. Accounts Payable was rated Reasonable Assurance [history:A-15]."
+      },
+      "impact": {
+        "score": 5,
+        "criterion": "Financial loss to Council",
+        "exposure": "$.tests.duplicates.different_dates.gbp_repeat_value",
+        "justification": "Financial: the repeat value of different-date pairs [metric:$.tests.duplicates.different_dates.gbp_repeat_value] is the amount that could have been paid twice; it is an upper bound, since most pairs are placement fees for different clients [metric:$.tests.duplicates.different_dates.items_by_tag.care_education_placement]."
+      },
+      "repeat_uplift": null,
+      "proposed_focus": "Sample the different-date pairs, general procurement and premises first, and match each payment to a distinct invoice and purchase record [rule:CPR-35]; for placement pairs, confirm each payment relates to a different client or period."
+    },
+    {
+      "id": "R-08",
+      "title": "High-value care and education placements with no published contract notice",
+      "description": "{{$.tests.off_contract.counts.by_tag.care_education_placement}} care and education placement suppliers above the publication threshold have no live notice, worth {{$.tests.off_contract.gbp.by_tag.care_education_placement|gbp}} in the window. Individual placements can be excluded from competition, but the reasons for the choice of provider must be on the case notes [rule:CPR-79] and Provider Selection Regime decisions recorded [rule:CPR-74].",
+      "likelihood": {
+        "score": 3,
+        "justification": "L3: one test flags placement suppliers above the publication threshold with no live notice [metric:$.tests.off_contract.counts.by_tag.care_education_placement]; analytics.json does not explain them away. Purchase of Residential and Nursing Care Provision was rated Reasonable Assurance [history:A-18], which argues the other way."
+      },
+      "impact": {
+        "score": 3,
+        "criterion": "Compliance (litigation, regulatory, contract)",
+        "justification": "C3: the suppliers are at or above the publication threshold tier [rule:CPR-66], and the exclusion depends on a recorded provider choice [rule:CPR-79]."
+      },
+      "repeat_uplift": null,
+      "proposed_focus": "Sample placement suppliers from the list and request the case-note record of provider choice [rule:CPR-79], or the PSR decision record [rule:CPR-74], or the framework or block contract the placement sits under."
+    },
+    {
+      "id": "R-09",
+      "title": "Waivers and exceptions to the Rules not approved or recorded in advance",
+      "description": "Competition can be waived above the quote threshold only on urgency or Executive Director discretion with written reasons [rule:CPR-21] [rule:CPR-22], approved by the Monitoring Officer or S151 Officer [rule:CPR-23] and fully documented [rule:CPR-28]. No spend test can see a waiver; the evidence sits in council records.",
+      "likelihood": {
+        "score": 3,
+        "justification": "Auditor override (decision R-09): the auditor set likelihood 3. The rubric reading was L2, since the evidence is council records only [rule:CPR-23] and the last audit on the theme, Contract Letting, was Reasonable Assurance [history:A-01]."
+      },
+      "impact": {
+        "score": 3,
+        "criterion": "Compliance (litigation, regulatory, contract)",
+        "justification": "C3: the waiver rules apply from the quote threshold tier [rule:CPR-22]; exceptions above the Key Decision level go to the Executive [rule:CPR-27], which would be row C4, but no metric shows waivers at that level."
+      },
+      "repeat_uplift": null,
+      "proposed_focus": "Request the waiver and exception register and test a sample for advance approval and written reasons [rule:CPR-24] [rule:CPR-30]; cross-check against suppliers flagged in the off-contract list [rule:CPR-66]."
+    }
+  ],
+  "revision": {"number": 2, "changes": []}
+}

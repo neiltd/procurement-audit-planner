@@ -1,0 +1,1 @@
+- [Weak-spot checks](weak-spot-checks.md) — read pack-figures unit_list first; sort, concentration, tier double-count, tag gaps, Threshold PBC, exclusions

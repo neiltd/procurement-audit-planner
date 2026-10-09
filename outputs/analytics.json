@@ -1,0 +1,3322 @@
+{
+  "inputs": {
+    "spend_files": [
+      {
+        "file": "Over500_2026_P02_-_published.xlsx",
+        "sha256": "f611346f258825b84924310c2d42edce4a4aec3d3832054b340f4ac2125301a6",
+        "header_row": 1,
+        "rows_read": 2892,
+        "rows_kept": 2280,
+        "rows_excluded": 612,
+        "blank_rows_skipped": 0,
+        "text_dates_parsed_mdy": 0
+      },
+      {
+        "file": "Over500_2026_P03_-_published.xlsx",
+        "sha256": "b7359a8e5cb9ea55bf3d47112f185167038b5ee64af8db9be02a7f5ea869ec76",
+        "header_row": 2,
+        "rows_read": 3547,
+        "rows_kept": 2711,
+        "rows_excluded": 836,
+        "blank_rows_skipped": 0,
+        "text_dates_parsed_mdy": 0
+      },
+      {
+        "file": "Over500_2026_P04_-_published.xlsx",
+        "sha256": "e465900d00a8e20ac767d6218827a48c01ab6ad911e5051a34c18979b7da0612",
+        "header_row": 2,
+        "rows_read": 4168,
+        "rows_kept": 3533,
+        "rows_excluded": 635,
+        "blank_rows_skipped": 0,
+        "text_dates_parsed_mdy": 0
+      }
+    ],
+    "contracts": {
+      "present": true,
+      "raw_rows": 150,
+      "kept": 141,
+      "dropped": 9,
+      "dropped_org_names": {
+        "Ministry of Defence": 5,
+        "Westworks Procurement Ltd": 1,
+        "SOUTHAMPTON CITY COUNCIL": 1,
+        "CITY OF BRADFORD METROPOLITAN DISTRICT COUNCIL": 1,
+        "Health Education England": 1
+      },
+      "kept_by_org_name_as_written": {
+        "West Berkshire Council": 115,
+        "West Berkshire": 20,
+        "WEST BERKSHIRE COUNCIL": 6
+      },
+      "live_in_window": 61,
+      "kept_by_year": {
+        "2021": 7,
+        "2022": 10,
+        "2023": 39,
+        "2024": 52,
+        "2025": 28,
+        "2026": 5
+      },
+      "warnings": [],
+      "supplier_rows": 210,
+      "notices_with_empty_supplier": [],
+      "zero_award_value_notices": 7,
+      "join_note": "Spend data has no Companies House numbers: the spend-to-notice join is by normalised supplier name only. CH numbers are used only to merge duplicate supplier blocks within a notice.",
+      "sha256": "9d0a53c092a5274f44490b428f9ff400ac8cb889df962165720f8a1d0ed42648",
+      "notes": [
+        "2026 is a partial publication year (5 kept notices); not tested against the <5 warning."
+      ],
+      "full_list": "outputs/analytics-full/notices.csv"
+    },
+    "rules_sha256": "853190e939ab1ef2620e608a24b273b322a135b869cf3499e630fb62f5c6f301"
+  },
+  "window": {
+    "start": "2026-05-01",
+    "end": "2026-07-31",
+    "months": 3,
+    "annualise_factor": 4.0,
+    "annualised_label": "annualised estimate = 3-month total x annualise_factor"
+  },
+  "cleaning": {
+    "rows_read": 10607,
+    "gbp_read": 80427254.26,
+    "exclusions": [
+      {
+        "reason": "redacted",
+        "rows": 2015,
+        "gbp": 2746746.71,
+        "suppliers": 1,
+        "pattern": "Supplier name == 'Redacted' after strip"
+      },
+      {
+        "reason": "pension_statutory",
+        "rows": 15,
+        "gbp": 9245179.4,
+        "suppliers": 2,
+        "pattern": "\\bLGPS\\b|PENSION|DEFICIT CONTRIBUTION|\\bAVC\\b on Narrative (AVC = pension additional voluntary contributions)"
+      },
+      {
+        "reason": "public_body",
+        "rows": 53,
+        "gbp": 2312688.07,
+        "suppliers": 21,
+        "pattern": "name: \\bCOUNCIL\\b|\\bCNCL\\b|\\bROYAL BOROUGH OF\\b|\\bNHS\\b|\\bHMRC\\b|\\bHM REVENUE\\b|\\bPOLICE\\b|\\bFIRE AND RESCUE\\b|\\bDEPARTMENT FOR\\b|\\bDEPT FOR\\b|\\bMINISTRY OF\\b|\\bHOME OFFICE\\b|\\bCABINET OFFICE\\b|\\bHMCTS\\b|\\bOFSTED\\b | narrative: ^Joint Arrangements \\(with Other Local Authorities or NHS\\)|^Payments to Other Local Authorities|^Payments to NHS"
+      }
+    ],
+    "exclusions_full_list": "outputs/analytics-full/exclusions.csv",
+    "rows_analysed": 8524,
+    "gbp_analysed": 66122640.08,
+    "notes": [
+      "Grants kept (Rules 1.6.2 treat a grant as a contract).",
+      "SCHOOL/ACADEMY/NURSERY names kept: mostly independent SEN schools, early-years and care providers."
+    ],
+    "full_list": "outputs/analytics-full/spend_clean.csv"
+  },
+  "tags": {
+    "map": {
+      "agency_staff": {
+        "narrative_in": [
+          "Agency & Temporary Staff"
+        ]
+      },
+      "grant": {
+        "narrative_in": [
+          "Grants"
+        ],
+        "note": "Rules 1.6.2 treat a grant as a contract, so grants stay in the population."
+      },
+      "premises": {
+        "expenditure_category_in": [
+          "Premises"
+        ]
+      },
+      "care_education_placement": {
+        "narrative_in_any_service": [
+          "Allowances for provision care",
+          "Adult Placement Allowances",
+          "Direct Payment",
+          "Payments to Carers"
+        ],
+        "narrative_in_when_service_in": {
+          "narratives": [
+            "Private Contractors",
+            "Private Contractors Additional Cost",
+            "Payment to contractor",
+            "Other agencies",
+            "Voluntary Associations"
+          ],
+          "services": [
+            "Adult Social Care",
+            "Adult Social Care - Transformation Projects",
+            "Children's Social Care",
+            "Education & SEND",
+            "Education (DSG Funded) & Other Education Grants",
+            "Executive Director People - Children's Services",
+            "Executive Director People - Adult Social Care & Public Health"
+          ]
+        },
+        "note": "Care/placement allowances anywhere, plus contractor, agency or voluntary-sector narratives under a social care, SEND or education Service (placements, packages, early-years and SEN provider payments)."
+      },
+      "general_procurement": {
+        "default": true,
+        "note": "Everything else, e.g. Environment contractors, Transport Hire (incl. SEND home-to-school transport), IT, professional fees, minor works."
+      }
+    },
+    "priority": [
+      "agency_staff",
+      "grant",
+      "premises",
+      "care_education_placement",
+      "general_procurement"
+    ],
+    "combinations_file": "outputs/analytics-full/tag_combinations.csv",
+    "totals": {
+      "agency_staff": {
+        "rows": 24,
+        "gbp": 1285541.24
+      },
+      "grant": {
+        "rows": 339,
+        "gbp": 6033599.82
+      },
+      "premises": {
+        "rows": 526,
+        "gbp": 1126526.88
+      },
+      "care_education_placement": {
+        "rows": 5925,
+        "gbp": 32037274.62
+      },
+      "general_procurement": {
+        "rows": 1710,
+        "gbp": 25639697.52
+      }
+    }
+  },
+  "thresholds": {
+    "quote_threshold": {
+      "value": 25000,
+      "low_inclusive": true,
+      "rule_id": "CPR-65",
+      "clause": "App B row B1",
+      "type": "procedure"
+    },
+    "publication_threshold": {
+      "value": 25000,
+      "low_inclusive": true,
+      "rule_id": "CPR-66",
+      "clause": "App B row B1",
+      "type": "publication"
+    },
+    "tiers": [
+      {
+        "value": 1000,
+        "rule_ids": [
+          "CPR-64"
+        ],
+        "inclusivity_by_rule_bound": {
+          "CPR-64:low": false
+        },
+        "low_inclusive": false
+      },
+      {
+        "value": 25000,
+        "rule_ids": [
+          "CPR-21",
+          "CPR-22",
+          "CPR-64",
+          "CPR-65",
+          "CPR-67"
+        ],
+        "inclusivity_by_rule_bound": {
+          "CPR-21:low": true,
+          "CPR-22:low": true,
+          "CPR-64:high": true,
+          "CPR-65:low": true,
+          "CPR-67:low": true
+        },
+        "low_inclusive": true
+      },
+      {
+        "value": 500000,
+        "rule_ids": [
+          "CPR-04",
+          "CPR-26",
+          "CPR-27",
+          "CPR-46",
+          "CPR-47",
+          "CPR-49",
+          "CPR-58",
+          "CPR-60",
+          "CPR-67",
+          "CPR-69"
+        ],
+        "inclusivity_by_rule_bound": {
+          "CPR-04:low": false,
+          "CPR-26:high": false,
+          "CPR-27:low": false,
+          "CPR-46:low": false,
+          "CPR-47:low": false,
+          "CPR-49:low": false,
+          "CPR-58:high": true,
+          "CPR-60:low": false,
+          "CPR-67:high": true,
+          "CPR-69:low": false
+        },
+        "low_inclusive": "mixed",
+        "mixed_handling": "rules disagree on whether the boundary value sits in the upper tier; clustering band is closed [0.9T, T]; split test uses payments < T and total >= T"
+      },
+      {
+        "value": 2500000,
+        "rule_ids": [
+          "CPR-60",
+          "CPR-62"
+        ],
+        "inclusivity_by_rule_bound": {
+          "CPR-60:high": true,
+          "CPR-62:low": true
+        },
+        "low_inclusive": true
+      }
+    ],
+    "dropped_tiers": [],
+    "dropped_tiers_note": "tiers at or below GBP 500 are dropped (data starts above GBP 500); 0 dropped",
+    "skipped": [
+      {
+        "param": "THRESHOLD_GOODS_SERVICES",
+        "rule_ids": [
+          "CPR-65"
+        ],
+        "reason": "figure not supplied (intranet)"
+      },
+      {
+        "param": "THRESHOLD_RELEVANT",
+        "rule_ids": [
+          "CPR-14",
+          "CPR-15",
+          "CPR-25",
+          "CPR-26",
+          "CPR-57",
+          "CPR-58",
+          "CPR-69",
+          "CPR-71",
+          "CPR-77",
+          "CPR-78",
+          "CPR-80"
+        ],
+        "reason": "figure not supplied (intranet)"
+      }
+    ],
+    "source": "outputs/rules.json; tiers from numeric threshold_low/threshold_high on procedure, approval and anti-avoidance rules"
+  },
+  "tests": {
+    "threshold_clustering": {
+      "status": "ran",
+      "rule_ids": [
+        "CPR-04",
+        "CPR-13",
+        "CPR-14",
+        "CPR-21",
+        "CPR-22",
+        "CPR-26",
+        "CPR-27",
+        "CPR-46",
+        "CPR-47",
+        "CPR-49",
+        "CPR-58",
+        "CPR-60",
+        "CPR-62",
+        "CPR-64",
+        "CPR-65",
+        "CPR-67",
+        "CPR-69"
+      ],
+      "parameters": {
+        "tiers": [
+          1000,
+          25000,
+          500000,
+          2500000
+        ],
+        "band": "[0.9T, T) if low bound inclusive, [0.9T, T] if exclusive"
+      },
+      "counts": {
+        "total": 368,
+        "by_tag": {
+          "agency_staff": 3,
+          "grant": 17,
+          "premises": 33,
+          "care_education_placement": 251,
+          "general_procurement": 64
+        }
+      },
+      "gbp": {
+        "total": 1382587.62,
+        "by_tag": {
+          "agency_staff": 2878.24,
+          "grant": 130475.24,
+          "premises": 53942.13,
+          "care_education_placement": 950983.61,
+          "general_procurement": 244308.4
+        }
+      },
+      "by_tier": {
+        "1000": {
+          "rows": 323,
+          "gbp": 307191.68
+        },
+        "25000": {
+          "rows": 45,
+          "gbp": 1075395.94
+        },
+        "500000": {
+          "rows": 0,
+          "gbp": 0.0
+        },
+        "2500000": {
+          "rows": 0,
+          "gbp": 0.0
+        }
+      },
+      "top20": [
+        {
+          "row_id": "Over500_2026_P04_-_published.xlsx:Data to publish:2239",
+          "supplier_norm": "AFFINITY TRUST SUPPORT",
+          "tag": "care_education_placement",
+          "Date": "2026-07-01",
+          "amount": 24926.0,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P03_-_published.xlsx:Data to publish:2056",
+          "supplier_norm": "CHARMAINE CAULFIELD",
+          "tag": "grant",
+          "Date": "2026-06-17",
+          "amount": 24850.39,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P03_-_published.xlsx:Data to publish:2307",
+          "supplier_norm": "SUKHBIR SINGH AND HARVINDER SINGH T A CALCOT SERVICES FOR CHILDREN CSFC",
+          "tag": "care_education_placement",
+          "Date": "2026-06-03",
+          "amount": 24788.75,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P03_-_published.xlsx:Data to publish:1660",
+          "supplier_norm": "FOCUS SUPPORT",
+          "tag": "care_education_placement",
+          "Date": "2026-06-24",
+          "amount": 24719.02,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P03_-_published.xlsx:Data to publish:2074",
+          "supplier_norm": "BEANSHEAF COMMUNITY PRE SCHOO",
+          "tag": "grant",
+          "Date": "2026-06-17",
+          "amount": 24705.36,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P02_-_published.xlsx:Data to publish:2241",
+          "supplier_norm": "SUKHBIR SINGH AND HARVINDER SINGH T A CALCOT SERVICES FOR CHILDREN CSFC",
+          "tag": "care_education_placement",
+          "Date": "2026-05-12",
+          "amount": 24618.75,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P03_-_published.xlsx:Data to publish:2106",
+          "supplier_norm": "UNITY RESIDENTIAL CARE SERVICES",
+          "tag": "care_education_placement",
+          "Date": "2026-06-30",
+          "amount": 24587.49,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P02_-_published.xlsx:Data to publish:2265",
+          "supplier_norm": "ACORN CARE EDUCATION",
+          "tag": "care_education_placement",
+          "Date": "2026-05-22",
+          "amount": 24578.67,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P04_-_published.xlsx:Data to publish:1281",
+          "supplier_norm": "THE BETTER GROUP",
+          "tag": "care_education_placement",
+          "Date": "2026-07-29",
+          "amount": 24476.02,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P02_-_published.xlsx:Data to publish:2268",
+          "supplier_norm": "HUCKLEBERRY HOUSE",
+          "tag": "care_education_placement",
+          "Date": "2026-05-26",
+          "amount": 24453.39,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P04_-_published.xlsx:Data to publish:3059",
+          "supplier_norm": "UTOPIA SUPPORTED HOUSING",
+          "tag": "care_education_placement",
+          "Date": "2026-07-09",
+          "amount": 24383.88,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P03_-_published.xlsx:Data to publish:649",
+          "supplier_norm": "TRIPLE VALUE IMPACT",
+          "tag": "general_procurement",
+          "Date": "2026-06-18",
+          "amount": 24244.0,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P02_-_published.xlsx:Data to publish:560",
+          "supplier_norm": "DEVCOMMS SOUTH EAST",
+          "tag": "general_procurement",
+          "Date": "2026-05-12",
+          "amount": 24227.07,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P02_-_published.xlsx:Data to publish:2271",
+          "supplier_norm": "ACORN CARE EDUCATION",
+          "tag": "care_education_placement",
+          "Date": "2026-05-26",
+          "amount": 24110.58,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P03_-_published.xlsx:Data to publish:13",
+          "supplier_norm": "THE BETTER GROUP",
+          "tag": "general_procurement",
+          "Date": "2026-06-01",
+          "amount": 24088.98,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P03_-_published.xlsx:Data to publish:396",
+          "supplier_norm": "BOOKINGLAB",
+          "tag": "general_procurement",
+          "Date": "2026-06-10",
+          "amount": 24000.0,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P03_-_published.xlsx:Data to publish:2008",
+          "supplier_norm": "CARE SERVICES TO YOU",
+          "tag": "care_education_placement",
+          "Date": "2026-06-16",
+          "amount": 23989.77,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P03_-_published.xlsx:Data to publish:2004",
+          "supplier_norm": "CARE SERVICES TO YOU",
+          "tag": "care_education_placement",
+          "Date": "2026-06-03",
+          "amount": 23989.77,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P04_-_published.xlsx:Data to publish:3154",
+          "supplier_norm": "CARE SERVICES TO YOU",
+          "tag": "care_education_placement",
+          "Date": "2026-07-06",
+          "amount": 23989.77,
+          "tier": 25000
+        },
+        {
+          "row_id": "Over500_2026_P04_-_published.xlsx:Data to publish:3092",
+          "supplier_norm": "CARE SERVICES TO YOU",
+          "tag": "care_education_placement",
+          "Date": "2026-07-23",
+          "amount": 23989.77,
+          "tier": 25000
+        }
+      ],
+      "full_list": "outputs/analytics-full/threshold_clustering.csv"
+    },
+    "split_purchases": {
+      "status": "ran",
+      "rule_ids": [
+        "CPR-04",
+        "CPR-13",
+        "CPR-14",
+        "CPR-21",
+        "CPR-22",
+        "CPR-26",
+        "CPR-27",
+        "CPR-46",
+        "CPR-47",
+        "CPR-49",
+        "CPR-58",
+        "CPR-60",
+        "CPR-62",
+        "CPR-64",
+        "CPR-65",
+        "CPR-67",
+        "CPR-69"
+      ],
+      "parameters": {
+        "window_days": 30,
+        "window_rule": "last payment calendar date - first payment calendar date <= 30 days",
+        "min_payments": 2,
+        "tiers": [
+          1000,
+          25000,
+          500000,
+          2500000
+        ],
+        "dedupe": "per supplier and tier, non-overlapping groups taken largest total first"
+      },
+      "counts": {
+        "total": 508,
+        "by_tag": {
+          "agency_staff": 3,
+          "grant": 9,
+          "premises": 49,
+          "care_education_placement": 308,
+          "general_procurement": 139
+        }
+      },
+      "gbp": {
+        "total": 43826412.48,
+        "by_tag": {
+          "agency_staff": 560784.6,
+          "grant": 189506.5,
+          "premises": 618380.53,
+          "care_education_placement": 23812059.11,
+          "general_procurement": 18645681.74
+        }
+      },
+      "by_tier": {
+        "1000": {
+          "groups": 241,
+          "gbp": 1217765.05,
+          "same_timestamp_groups": 29
+        },
+        "25000": {
+          "groups": 254,
+          "gbp": 21786907.63,
+          "same_timestamp_groups": 20
+        },
+        "500000": {
+          "groups": 10,
+          "gbp": 10560644.49,
+          "same_timestamp_groups": 0
+        },
+        "2500000": {
+          "groups": 3,
+          "gbp": 10261095.31,
+          "same_timestamp_groups": 0
+        }
+      },
+      "same_timestamp_groups": 49,
+      "gbp_note": "gbp = sum of group totals; a payment can appear in groups for different tiers",
+      "top20": [
+        {
+          "supplier_norm": "VEOLIA ES WEST BERKSHIRE CHAPS ONLY",
+          "tag": "general_procurement",
+          "tier": 2500000,
+          "payments": 2,
+          "group_total": 3984208.64,
+          "first_date": "2026-06-29",
+          "last_date": "2026-07-27",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2146",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3194"
+          ]
+        },
+        {
+          "supplier_norm": "VOLKERHIGHWAYS",
+          "tag": "general_procurement",
+          "tier": 2500000,
+          "payments": 56,
+          "group_total": 3289410.7,
+          "first_date": "2026-07-06",
+          "last_date": "2026-07-31",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:793",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:603",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:619",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:795",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1291",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3308",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:618",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:798",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:794",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:620"
+          ],
+          "row_ids_note": "10 largest of 56; full list in CSV"
+        },
+        {
+          "supplier_norm": "VOLKERHIGHWAYS",
+          "tag": "general_procurement",
+          "tier": 2500000,
+          "payments": 55,
+          "group_total": 2987475.97,
+          "first_date": "2026-05-11",
+          "last_date": "2026-06-10",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:699",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:701",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:729",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:711",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:702",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:692",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:705",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:706",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:710",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2184"
+          ],
+          "row_ids_note": "10 largest of 55; full list in CSV"
+        },
+        {
+          "supplier_norm": "VOLKERHIGHWAYS",
+          "tag": "general_procurement",
+          "tier": 500000,
+          "payments": 55,
+          "group_total": 2987475.97,
+          "first_date": "2026-05-11",
+          "last_date": "2026-06-10",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:699",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:701",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:729",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:711",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:702",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:692",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:705",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:706",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:710",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2184"
+          ],
+          "row_ids_note": "10 largest of 55; full list in CSV"
+        },
+        {
+          "supplier_norm": "VOLKERHIGHWAYS",
+          "tag": "general_procurement",
+          "tier": 500000,
+          "payments": 45,
+          "group_total": 1670192.74,
+          "first_date": "2026-06-22",
+          "last_date": "2026-07-22",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:684",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:619",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:795",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1291",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3308",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:618",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:798",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:794",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:620",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1292"
+          ],
+          "row_ids_note": "10 largest of 45; full list in CSV"
+        },
+        {
+          "supplier_norm": "BUPA CARE SERVICES",
+          "tag": "care_education_placement",
+          "tier": 25000,
+          "payments": 248,
+          "group_total": 1259714.57,
+          "first_date": "2026-06-10",
+          "last_date": "2026-07-08",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1850",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1043",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1039",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1824",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1120",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1073",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2908",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1952",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1040",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1905"
+          ],
+          "row_ids_note": "10 largest of 248; full list in CSV"
+        },
+        {
+          "supplier_norm": "BUPA CARE SERVICES",
+          "tag": "care_education_placement",
+          "tier": 500000,
+          "payments": 248,
+          "group_total": 1259714.57,
+          "first_date": "2026-06-10",
+          "last_date": "2026-07-08",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1850",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1043",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1039",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1824",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1120",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1073",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2908",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1952",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1040",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1905"
+          ],
+          "row_ids_note": "10 largest of 248; full list in CSV"
+        },
+        {
+          "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+          "tag": "care_education_placement",
+          "tier": 500000,
+          "payments": 54,
+          "group_total": 1026661.89,
+          "first_date": "2026-06-17",
+          "last_date": "2026-06-17",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3116",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3108",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2314",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2319",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2198",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2320",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2196",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2193",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2192",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2191"
+          ],
+          "row_ids_note": "10 largest of 54; full list in CSV"
+        },
+        {
+          "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+          "tag": "care_education_placement",
+          "tier": 25000,
+          "payments": 54,
+          "group_total": 1026661.89,
+          "first_date": "2026-06-17",
+          "last_date": "2026-06-17",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3116",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3108",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2314",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2319",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2198",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2320",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2196",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2193",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2192",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2191"
+          ],
+          "row_ids_note": "10 largest of 54; full list in CSV"
+        },
+        {
+          "supplier_norm": "AFFINITY TRUST SUPPORT",
+          "tag": "care_education_placement",
+          "tier": 500000,
+          "payments": 182,
+          "group_total": 813496.97,
+          "first_date": "2026-06-24",
+          "last_date": "2026-07-22",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2320",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1628",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2239",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1629",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1678",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2342",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2350",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1547",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1702",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2977"
+          ],
+          "row_ids_note": "10 largest of 182; full list in CSV"
+        },
+        {
+          "supplier_norm": "AFFINITY TRUST SUPPORT",
+          "tag": "care_education_placement",
+          "tier": 25000,
+          "payments": 180,
+          "group_total": 758590.31,
+          "first_date": "2026-06-24",
+          "last_date": "2026-07-22",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2239",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1629",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1678",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2342",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2350",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1547",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1702",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2977",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1694",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2975"
+          ],
+          "row_ids_note": "10 largest of 180; full list in CSV"
+        },
+        {
+          "supplier_norm": "BUPA CARE SERVICES",
+          "tag": "care_education_placement",
+          "tier": 500000,
+          "payments": 120,
+          "group_total": 605975.41,
+          "first_date": "2026-05-06",
+          "last_date": "2026-06-03",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1832",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1630",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1458",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:985",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1465",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:981",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1472",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:869",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1461",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1462"
+          ],
+          "row_ids_note": "10 largest of 120; full list in CSV"
+        },
+        {
+          "supplier_norm": "BUPA CARE SERVICES",
+          "tag": "care_education_placement",
+          "tier": 25000,
+          "payments": 120,
+          "group_total": 605975.41,
+          "first_date": "2026-05-06",
+          "last_date": "2026-06-03",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1832",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1630",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1458",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:985",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1465",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:981",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1472",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:869",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1461",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1462"
+          ],
+          "row_ids_note": "10 largest of 120; full list in CSV"
+        },
+        {
+          "supplier_norm": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+          "tag": "care_education_placement",
+          "tier": 500000,
+          "payments": 23,
+          "group_total": 566088.82,
+          "first_date": "2026-05-19",
+          "last_date": "2026-06-17",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2254",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2244",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2246",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2248",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2251",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2258",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2245",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2262",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2259",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2229"
+          ],
+          "row_ids_note": "10 largest of 23; full list in CSV"
+        },
+        {
+          "supplier_norm": "COMENSURA",
+          "tag": "agency_staff",
+          "tier": 500000,
+          "payments": 6,
+          "group_total": 557962.29,
+          "first_date": "2026-06-15",
+          "last_date": "2026-07-15",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:9",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:6",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:11",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:9",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:10",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:5"
+          ]
+        },
+        {
+          "supplier_norm": "RUSKIN MILL TRUST",
+          "tag": "care_education_placement",
+          "tier": 500000,
+          "payments": 5,
+          "group_total": 550097.21,
+          "first_date": "2026-05-13",
+          "last_date": "2026-06-02",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:823",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1822",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:802",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2676",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:801"
+          ]
+        },
+        {
+          "supplier_norm": "SOFTWAREONE UK",
+          "tag": "general_procurement",
+          "tier": 500000,
+          "payments": 4,
+          "group_total": 522978.62,
+          "first_date": "2026-05-27",
+          "last_date": "2026-05-27",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:473",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:474",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:653",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:654"
+          ]
+        },
+        {
+          "supplier_norm": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+          "tag": "care_education_placement",
+          "tier": 25000,
+          "payments": 18,
+          "group_total": 401210.46,
+          "first_date": "2026-05-19",
+          "last_date": "2026-06-17",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2258",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2245",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2262",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2259",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2229",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2179",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2256",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2250",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2253",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2255"
+          ],
+          "row_ids_note": "10 largest of 18; full list in CSV"
+        },
+        {
+          "supplier_norm": "GCH ALDER T A HUNGERFORD CARE HOME",
+          "tag": "care_education_placement",
+          "tier": 25000,
+          "payments": 66,
+          "group_total": 357859.3,
+          "first_date": "2026-05-20",
+          "last_date": "2026-06-17",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1508",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1573",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1497",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2714",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1018",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1506",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:905",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1496",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1478",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2719"
+          ],
+          "row_ids_note": "10 largest of 66; full list in CSV"
+        },
+        {
+          "supplier_norm": "VOYAGE CARE",
+          "tag": "care_education_placement",
+          "tier": 25000,
+          "payments": 44,
+          "group_total": 337815.88,
+          "first_date": "2026-05-13",
+          "last_date": "2026-06-10",
+          "same_timestamp": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1465",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1642",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1405",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1641",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1758",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1836",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1607",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1639",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2894",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1644"
+          ],
+          "row_ids_note": "10 largest of 44; full list in CSV"
+        }
+      ],
+      "full_list": "outputs/analytics-full/split_purchases.csv"
+    },
+    "off_contract": {
+      "status": "ran",
+      "rule_ids": [
+        "CPR-66",
+        "CPR-65"
+      ],
+      "parameters": {
+        "publication_threshold": 25000,
+        "comparison": ">=",
+        "basis": "annualised estimate (3-month total x annualise_factor)",
+        "match": "exact normalised name to a live notice; candidates (difflib ratio >= 0.85 or containment >= 6 chars) listed separately and stay unmatched"
+      },
+      "population_note": "Contracts Finder publishes only above about GBP 25,000; only suppliers whose annualised estimate reaches the publication threshold are tested. Smaller suppliers are never questioned.",
+      "export_coverage_note": "The notice export covers publication dates from 2021 only; long-running contracts awarded earlier have no notice here, so 'no live notice found' is a prompt to request contract evidence, not evidence that none exists.",
+      "population": {
+        "suppliers_tested": 672,
+        "exact_live_match": 35
+      },
+      "counts": {
+        "total": 637,
+        "by_tag": {
+          "agency_staff": 1,
+          "grant": 124,
+          "premises": 27,
+          "care_education_placement": 316,
+          "general_procurement": 169
+        }
+      },
+      "gbp": {
+        "total": 62526181.19,
+        "by_tag": {
+          "agency_staff": 1275552.15,
+          "grant": 5876513.55,
+          "premises": 957959.13,
+          "care_education_placement": 31583839.53,
+          "general_procurement": 22832316.83
+        }
+      },
+      "gbp_annualised_estimate": 250104724.76,
+      "with_candidate_name": 16,
+      "candidate_pairs": 19,
+      "candidates_list": "outputs/analytics-full/off_contract_candidates.csv",
+      "top20": [
+        {
+          "supplier_norm": "VOLKERHIGHWAYS",
+          "tag": "general_procurement",
+          "total_3m": 7377922.21,
+          "annualised_estimate": 29511688.84,
+          "payments": 126,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:793",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:603",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:684",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:699",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:709",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:701",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:729",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:711",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:702",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:619"
+          ],
+          "row_ids_note": "10 largest of 126; full list in CSV"
+        },
+        {
+          "supplier_norm": "VEOLIA ES WEST BERKSHIRE CHAPS ONLY",
+          "tag": "general_procurement",
+          "total_3m": 6186065.04,
+          "annualised_estimate": 24744260.16,
+          "payments": 3,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2196",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2146",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3194"
+          ]
+        },
+        {
+          "supplier_norm": "MILLBROOK HEALTHCARE",
+          "tag": "general_procurement",
+          "total_3m": 3459365.35,
+          "annualised_estimate": 13837461.4,
+          "payments": 4,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3789",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2216",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2144",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3311"
+          ]
+        },
+        {
+          "supplier_norm": "BUPA CARE SERVICES",
+          "tag": "care_education_placement",
+          "total_3m": 1874166.5,
+          "annualised_estimate": 7496666.0,
+          "payments": 370,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1850",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1039",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1120",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2908",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1824",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1073",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1043",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1952",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1087",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1825"
+          ],
+          "row_ids_note": "10 largest of 370; full list in CSV"
+        },
+        {
+          "supplier_norm": "COMENSURA",
+          "tag": "agency_staff",
+          "total_3m": 1275552.15,
+          "annualised_estimate": 5102208.6,
+          "payments": 14,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:9",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:5",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:19",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:12",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:6",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:7",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:11",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:9",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:8",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:10"
+          ],
+          "row_ids_note": "10 largest of 14; full list in CSV"
+        },
+        {
+          "supplier_norm": "AFFINITY TRUST SUPPORT",
+          "tag": "care_education_placement",
+          "total_3m": 1098336.76,
+          "annualised_estimate": 4393347.04,
+          "payments": 263,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2320",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1628",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2239",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1629",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2555",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1720",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3462",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2342",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1678",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2350"
+          ],
+          "row_ids_note": "10 largest of 263; full list in CSV"
+        },
+        {
+          "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+          "tag": "care_education_placement",
+          "total_3m": 1026661.89,
+          "annualised_estimate": 4106647.56,
+          "payments": 54,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2320",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3108",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2319",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2310",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3116",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2314",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2196",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2172",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2198",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2191"
+          ],
+          "row_ids_note": "10 largest of 54; full list in CSV"
+        },
+        {
+          "supplier_norm": "RUSKIN MILL TRUST",
+          "tag": "care_education_placement",
+          "total_3m": 795197.64,
+          "annualised_estimate": 3180790.56,
+          "payments": 9,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:823",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1822",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:802",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1512",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2676",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:877",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3252",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3332",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:801"
+          ]
+        },
+        {
+          "supplier_norm": "AMEGREEN CHILDRENS SERVICES",
+          "tag": "care_education_placement",
+          "total_3m": 750437.33,
+          "annualised_estimate": 3001749.32,
+          "payments": 27,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2095",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3080",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2088",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1940",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1926",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1936",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2089",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3156",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3752",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2105"
+          ],
+          "row_ids_note": "10 largest of 27; full list in CSV"
+        },
+        {
+          "supplier_norm": "BRIGHTER LIVING CARE",
+          "tag": "care_education_placement",
+          "total_3m": 747183.47,
+          "annualised_estimate": 2988733.88,
+          "payments": 74,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3476",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2250",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2547",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1708",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1737",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3473",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2249",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1656",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1730",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2229"
+          ],
+          "row_ids_note": "10 largest of 74; full list in CSV"
+        },
+        {
+          "supplier_norm": "SUKHBIR SINGH AND HARVINDER SINGH T A CALCOT SERVICES FOR CHILDREN CSFC",
+          "tag": "care_education_placement",
+          "total_3m": 639381.6,
+          "annualised_estimate": 2557526.4,
+          "payments": 26,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2046",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2043",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2044",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2035",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2029",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2042",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3074",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2239",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2045",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1932"
+          ],
+          "row_ids_note": "10 largest of 26; full list in CSV"
+        },
+        {
+          "supplier_norm": "WE ARE THE CARE COMPANY",
+          "tag": "care_education_placement",
+          "total_3m": 589012.31,
+          "annualised_estimate": 2356049.24,
+          "payments": 349,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1358",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:858",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:838",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:957",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:896",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:956",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:921",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:889",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:855",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1374"
+          ],
+          "row_ids_note": "10 largest of 349; full list in CSV"
+        },
+        {
+          "supplier_norm": "THE BETTER GROUP",
+          "tag": "care_education_placement",
+          "total_3m": 588490.08,
+          "annualised_estimate": 2353960.32,
+          "payments": 26,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:665",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:666",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:670",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:783",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:667",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:912",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:18",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1281",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:13",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2397"
+          ],
+          "row_ids_note": "10 largest of 26; full list in CSV"
+        },
+        {
+          "supplier_norm": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+          "tag": "care_education_placement",
+          "total_3m": 567708.85,
+          "annualised_estimate": 2270835.4,
+          "payments": 25,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2254",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2244",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2246",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2248",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2251",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2245",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2262",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2258",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2259",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2229"
+          ],
+          "row_ids_note": "10 largest of 25; full list in CSV"
+        },
+        {
+          "supplier_norm": "VOYAGE CARE",
+          "tag": "care_education_placement",
+          "total_3m": 554678.88,
+          "annualised_estimate": 2218715.52,
+          "payments": 80,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2161",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1642",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1465",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2182",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1641",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1405",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1758",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1836",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3575",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1680"
+          ],
+          "row_ids_note": "10 largest of 80; full list in CSV"
+        },
+        {
+          "supplier_norm": "GCH ALDER T A HUNGERFORD CARE HOME",
+          "tag": "care_education_placement",
+          "total_3m": 545531.64,
+          "annualised_estimate": 2182126.56,
+          "payments": 104,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1508",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1454",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1573",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1497",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1018",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2714",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1050",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1506",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1097",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2023"
+          ],
+          "row_ids_note": "10 largest of 104; full list in CSV"
+        },
+        {
+          "supplier_norm": "SOFTWAREONE UK",
+          "tag": "general_procurement",
+          "total_3m": 522978.62,
+          "annualised_estimate": 2091914.48,
+          "payments": 4,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:473",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:474",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:653",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:654"
+          ]
+        },
+        {
+          "supplier_norm": "LIVITY LIFE",
+          "tag": "general_procurement",
+          "total_3m": 513074.85,
+          "annualised_estimate": 2052299.4,
+          "payments": 9,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2200",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3087",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3310",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3197",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2199",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3215",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3088",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3196",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2218"
+          ]
+        },
+        {
+          "supplier_norm": "WEST BERKSHIRE MENCAP",
+          "tag": "care_education_placement",
+          "total_3m": 505286.21,
+          "annualised_estimate": 2021144.84,
+          "payments": 115,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:785",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1415",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:680",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:758",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:682",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:763",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:869",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:782",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:681",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:762"
+          ],
+          "row_ids_note": "10 largest of 115; full list in CSV"
+        },
+        {
+          "supplier_norm": "PURLEY PARK TRUST",
+          "tag": "care_education_placement",
+          "total_3m": 471283.82,
+          "annualised_estimate": 1885135.28,
+          "payments": 94,
+          "has_candidate": false,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:772",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:649",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:777",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:773",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:847",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:781",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:753",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:806",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:776",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:687"
+          ],
+          "row_ids_note": "10 largest of 94; full list in CSV"
+        }
+      ],
+      "full_list": "outputs/analytics-full/off_contract.csv"
+    },
+    "duplicates": {
+      "status": "ran",
+      "rule_ids": [],
+      "rule_note": "payment-control indicator; no Contract Procedure Rule sets this test",
+      "parameters": {
+        "window_days": 7,
+        "key": "normalised supplier + identical net amount",
+        "same_timestamp": "identical Date value (one payment run)",
+        "different_dates": "distinct payment timestamps chained with calendar-day gaps <= 7 (may include two runs on one day)",
+        "date_has_time_component": true
+      },
+      "counts": {
+        "total": 783,
+        "by_tag": {
+          "agency_staff": 1,
+          "grant": 4,
+          "premises": 38,
+          "care_education_placement": 686,
+          "general_procurement": 54
+        }
+      },
+      "gbp": {
+        "total": 10204161.81,
+        "by_tag": {
+          "agency_staff": 1250.0,
+          "grant": 32077.54,
+          "premises": 143576.51,
+          "care_education_placement": 9368489.07,
+          "general_procurement": 658768.69
+        }
+      },
+      "gbp_note": "gbp = amount x rows in each item; gbp_repeat_value = amount x (rows - 1). An item of each type can share rows.",
+      "same_timestamp": {
+        "items": 527,
+        "rows": 1529,
+        "gbp_rows_total": 5428629.88,
+        "gbp_repeat_value": 3722011.84,
+        "items_by_tag": {
+          "agency_staff": 1,
+          "grant": 3,
+          "premises": 10,
+          "care_education_placement": 482,
+          "general_procurement": 31
+        },
+        "gbp_by_tag": {
+          "agency_staff": 1250.0,
+          "grant": 30477.54,
+          "premises": 22868.54,
+          "care_education_placement": 5255466.83,
+          "general_procurement": 118566.97
+        },
+        "top20": [
+          {
+            "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+            "tag": "care_education_placement",
+            "amount": 20337.45,
+            "rows": 9,
+            "first_date": "2026-06-17",
+            "last_date": "2026-06-17",
+            "gbp_rows_total": 183037.05,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2164",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2165",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2166",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2167",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2189",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2190",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2311",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3106",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3107"
+            ]
+          },
+          {
+            "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+            "tag": "care_education_placement",
+            "amount": 20337.45,
+            "rows": 8,
+            "first_date": "2026-06-17",
+            "last_date": "2026-06-17",
+            "gbp_rows_total": 162699.6,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2177",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2203",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2204",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2321",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2322",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2323",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3114",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3115"
+            ]
+          },
+          {
+            "supplier_norm": "BUPA CARE SERVICES",
+            "tag": "care_education_placement",
+            "amount": 8476.52,
+            "rows": 18,
+            "first_date": "2026-07-08",
+            "last_date": "2026-07-08",
+            "gbp_rows_total": 152577.36,
+            "row_ids": [
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1040",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1041",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1071",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1086",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1087",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1105",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1107",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1115",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1154",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1155"
+            ],
+            "row_ids_note": "10 largest of 18; full list in CSV"
+          },
+          {
+            "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+            "tag": "care_education_placement",
+            "amount": 20337.45,
+            "rows": 7,
+            "first_date": "2026-06-17",
+            "last_date": "2026-06-17",
+            "gbp_rows_total": 142362.15,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2175",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2176",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2199",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2200",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2201",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3112",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3113"
+            ]
+          },
+          {
+            "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+            "tag": "care_education_placement",
+            "amount": 20337.45,
+            "rows": 7,
+            "first_date": "2026-06-17",
+            "last_date": "2026-06-17",
+            "gbp_rows_total": 142362.15,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2173",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2195",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2315",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2316",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2317",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3110",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3111"
+            ]
+          },
+          {
+            "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+            "tag": "care_education_placement",
+            "amount": 20534.9,
+            "rows": 5,
+            "first_date": "2026-06-17",
+            "last_date": "2026-06-17",
+            "gbp_rows_total": 102674.5,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2191",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2192",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2193",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2314",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3108"
+            ]
+          },
+          {
+            "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+            "tag": "care_education_placement",
+            "amount": 20337.45,
+            "rows": 5,
+            "first_date": "2026-06-17",
+            "last_date": "2026-06-17",
+            "gbp_rows_total": 101687.25,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2169",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2170",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2312",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2313",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3109"
+            ]
+          },
+          {
+            "supplier_norm": "BUPA CARE SERVICES",
+            "tag": "care_education_placement",
+            "amount": 5097.52,
+            "rows": 19,
+            "first_date": "2026-06-10",
+            "last_date": "2026-06-10",
+            "gbp_rows_total": 96852.88,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1011",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1027",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1028",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1336",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1477",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1759",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2709",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2710",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2844",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:837"
+            ],
+            "row_ids_note": "10 largest of 19; full list in CSV"
+          },
+          {
+            "supplier_norm": "BUPA CARE SERVICES",
+            "tag": "care_education_placement",
+            "amount": 5080.18,
+            "rows": 19,
+            "first_date": "2026-05-13",
+            "last_date": "2026-05-13",
+            "gbp_rows_total": 96523.42,
+            "row_ids": [
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1035",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1037",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1038",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1039",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1040",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1455",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1456",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1457",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1850",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:868"
+            ],
+            "row_ids_note": "10 largest of 19; full list in CSV"
+          },
+          {
+            "supplier_norm": "BUPA CARE SERVICES",
+            "tag": "care_education_placement",
+            "amount": 5097.52,
+            "rows": 18,
+            "first_date": "2026-07-08",
+            "last_date": "2026-07-08",
+            "gbp_rows_total": 91755.36,
+            "row_ids": [
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1033",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1034",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1037",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1072",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1081",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1083",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1104",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1136",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1137",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1820"
+            ],
+            "row_ids_note": "10 largest of 18; full list in CSV"
+          },
+          {
+            "supplier_norm": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+            "tag": "care_education_placement",
+            "amount": 32711.33,
+            "rows": 2,
+            "first_date": "2026-05-19",
+            "last_date": "2026-05-19",
+            "gbp_rows_total": 65422.66,
+            "row_ids": [
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2246",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2248"
+            ]
+          },
+          {
+            "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+            "tag": "care_education_placement",
+            "amount": 20534.9,
+            "rows": 3,
+            "first_date": "2026-06-17",
+            "last_date": "2026-06-17",
+            "gbp_rows_total": 61604.7,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2171",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2172",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2196"
+            ]
+          },
+          {
+            "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+            "tag": "care_education_placement",
+            "amount": 20534.9,
+            "rows": 3,
+            "first_date": "2026-06-17",
+            "last_date": "2026-06-17",
+            "gbp_rows_total": 61604.7,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2198",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2319",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2320"
+            ]
+          },
+          {
+            "supplier_norm": "BUPA CARE SERVICES",
+            "tag": "care_education_placement",
+            "amount": 9903.62,
+            "rows": 6,
+            "first_date": "2026-07-08",
+            "last_date": "2026-07-08",
+            "gbp_rows_total": 59421.72,
+            "row_ids": [
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1039",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1043",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1073",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1120",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1824",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:2908"
+            ]
+          },
+          {
+            "supplier_norm": "BUPA CARE SERVICES",
+            "tag": "care_education_placement",
+            "amount": 4548.75,
+            "rows": 13,
+            "first_date": "2026-06-03",
+            "last_date": "2026-06-03",
+            "gbp_rows_total": 59133.75,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1018",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1322",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1857",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2830",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2845",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:890",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:891",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:915",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:916",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:917"
+            ],
+            "row_ids_note": "10 largest of 13; full list in CSV"
+          },
+          {
+            "supplier_norm": "GCH ALDER T A HUNGERFORD CARE HOME",
+            "tag": "care_education_placement",
+            "amount": 5700.0,
+            "rows": 10,
+            "first_date": "2026-07-15",
+            "last_date": "2026-07-15",
+            "gbp_rows_total": 57000.0,
+            "row_ids": [
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1048",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1097",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1114",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1126",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1146",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1917",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1941",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:1942",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:2023",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:2670"
+            ]
+          },
+          {
+            "supplier_norm": "GCH ALDER T A HUNGERFORD CARE HOME",
+            "tag": "care_education_placement",
+            "amount": 5700.0,
+            "rows": 10,
+            "first_date": "2026-06-17",
+            "last_date": "2026-06-17",
+            "gbp_rows_total": 57000.0,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1015",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1383",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1384",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1478",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1479",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1496",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2711",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2719",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:905",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:988"
+            ]
+          },
+          {
+            "supplier_norm": "SUKHBIR SINGH AND HARVINDER SINGH T A CALCOT SERVICES FOR CHILDREN CSFC",
+            "tag": "care_education_placement",
+            "amount": 18768.75,
+            "rows": 3,
+            "first_date": "2026-06-03",
+            "last_date": "2026-06-03",
+            "gbp_rows_total": 56306.25,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2157",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2158",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3102"
+            ]
+          },
+          {
+            "supplier_norm": "GCH ALDER T A HUNGERFORD CARE HOME",
+            "tag": "care_education_placement",
+            "amount": 5584.29,
+            "rows": 10,
+            "first_date": "2026-05-20",
+            "last_date": "2026-05-20",
+            "gbp_rows_total": 55842.9,
+            "row_ids": [
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1009",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1010",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1011",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1065",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1066",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1500",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1501",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1502",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1503",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:1570"
+            ]
+          },
+          {
+            "supplier_norm": "BUPA CARE SERVICES",
+            "tag": "care_education_placement",
+            "amount": 5166.0,
+            "rows": 10,
+            "first_date": "2026-06-10",
+            "last_date": "2026-06-10",
+            "gbp_rows_total": 51660.0,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1328",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1344",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1345",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1346",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1379",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1487",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2834",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2851",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:941",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:980"
+            ]
+          }
+        ]
+      },
+      "different_dates": {
+        "items": 256,
+        "rows": 801,
+        "gbp_rows_total": 4775531.93,
+        "gbp_repeat_value": 3254020.77,
+        "items_by_tag": {
+          "grant": 1,
+          "premises": 28,
+          "care_education_placement": 204,
+          "general_procurement": 23
+        },
+        "gbp_by_tag": {
+          "grant": 1600.0,
+          "premises": 120707.97,
+          "care_education_placement": 4113022.24,
+          "general_procurement": 540201.72
+        },
+        "top20": [
+          {
+            "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+            "tag": "care_education_placement",
+            "amount": 20337.45,
+            "rows": 36,
+            "first_date": "2026-06-17",
+            "last_date": "2026-06-17",
+            "gbp_rows_total": 732148.2,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2164",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2165",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2166",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2167",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2189",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2190",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2311",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3106",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3107",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2169"
+            ],
+            "row_ids_note": "10 largest of 36; full list in CSV"
+          },
+          {
+            "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+            "tag": "care_education_placement",
+            "amount": 20534.9,
+            "rows": 13,
+            "first_date": "2026-06-17",
+            "last_date": "2026-06-17",
+            "gbp_rows_total": 266953.7,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2310",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2191",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2192",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2193",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2314",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3108",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2171",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2172",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2196",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2198"
+            ],
+            "row_ids_note": "10 largest of 13; full list in CSV"
+          },
+          {
+            "supplier_norm": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+            "tag": "care_education_placement",
+            "amount": 21988.16,
+            "rows": 10,
+            "first_date": "2026-05-19",
+            "last_date": "2026-05-21",
+            "gbp_rows_total": 219881.6,
+            "row_ids": [
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2242",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2243",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2247",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2249",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2252",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2253",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2255",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2257",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2260",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2263"
+            ]
+          },
+          {
+            "supplier_norm": "VOLKERHIGHWAYS",
+            "tag": "general_procurement",
+            "amount": 101925.86,
+            "rows": 2,
+            "first_date": "2026-07-15",
+            "last_date": "2026-07-17",
+            "gbp_rows_total": 203851.72,
+            "row_ids": [
+              "Over500_2026_P04_-_published.xlsx:Data to publish:3308",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:618"
+            ]
+          },
+          {
+            "supplier_norm": "SUKHBIR SINGH AND HARVINDER SINGH T A CALCOT SERVICES FOR CHILDREN CSFC",
+            "tag": "care_education_placement",
+            "amount": 18768.75,
+            "rows": 6,
+            "first_date": "2026-06-03",
+            "last_date": "2026-06-03",
+            "gbp_rows_total": 112612.5,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2157",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2158",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3102",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2159",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3103",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2306"
+            ]
+          },
+          {
+            "supplier_norm": "VOLKERHIGHWAYS",
+            "tag": "general_procurement",
+            "amount": 54241.36,
+            "rows": 2,
+            "first_date": "2026-07-13",
+            "last_date": "2026-07-16",
+            "gbp_rows_total": 108482.72,
+            "row_ids": [
+              "Over500_2026_P04_-_published.xlsx:Data to publish:3210",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:3302"
+            ]
+          },
+          {
+            "supplier_norm": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+            "tag": "care_education_placement",
+            "amount": 32711.33,
+            "rows": 3,
+            "first_date": "2026-05-19",
+            "last_date": "2026-05-19",
+            "gbp_rows_total": 98133.99,
+            "row_ids": [
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2246",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2248",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2251"
+            ]
+          },
+          {
+            "supplier_norm": "HUCKLEBERRY HOUSE",
+            "tag": "care_education_placement",
+            "amount": 30918.75,
+            "rows": 3,
+            "first_date": "2026-05-26",
+            "last_date": "2026-05-26",
+            "gbp_rows_total": 92756.25,
+            "row_ids": [
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2266",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2267",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2269"
+            ]
+          },
+          {
+            "supplier_norm": "CARE SERVICES TO YOU",
+            "tag": "care_education_placement",
+            "amount": 23989.77,
+            "rows": 3,
+            "first_date": "2026-07-17",
+            "last_date": "2026-07-23",
+            "gbp_rows_total": 71969.31,
+            "row_ids": [
+              "Over500_2026_P04_-_published.xlsx:Data to publish:3750",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:3092",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:3161"
+            ]
+          },
+          {
+            "supplier_norm": "CARE SERVICES TO YOU",
+            "tag": "care_education_placement",
+            "amount": 23989.77,
+            "rows": 3,
+            "first_date": "2026-06-16",
+            "last_date": "2026-06-22",
+            "gbp_rows_total": 71969.31,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2008",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1931",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:3044"
+            ]
+          },
+          {
+            "supplier_norm": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+            "tag": "care_education_placement",
+            "amount": 23210.0,
+            "rows": 3,
+            "first_date": "2026-05-19",
+            "last_date": "2026-05-21",
+            "gbp_rows_total": 69630.0,
+            "row_ids": [
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2245",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2258",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2262"
+            ]
+          },
+          {
+            "supplier_norm": "AMEGREEN CHILDRENS SERVICES",
+            "tag": "care_education_placement",
+            "amount": 34431.08,
+            "rows": 2,
+            "first_date": "2026-07-20",
+            "last_date": "2026-07-20",
+            "gbp_rows_total": 68862.16,
+            "row_ids": [
+              "Over500_2026_P04_-_published.xlsx:Data to publish:3081",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:3752"
+            ]
+          },
+          {
+            "supplier_norm": "AMEGREEN CHILDRENS SERVICES",
+            "tag": "care_education_placement",
+            "amount": 34431.08,
+            "rows": 2,
+            "first_date": "2026-05-26",
+            "last_date": "2026-05-27",
+            "gbp_rows_total": 68862.16,
+            "row_ids": [
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2092",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2105"
+            ]
+          },
+          {
+            "supplier_norm": "PARADIGM CARE SERVICES",
+            "tag": "care_education_placement",
+            "amount": 17000.0,
+            "rows": 4,
+            "first_date": "2026-07-16",
+            "last_date": "2026-07-31",
+            "gbp_rows_total": 68000.0,
+            "row_ids": [
+              "Over500_2026_P04_-_published.xlsx:Data to publish:3064",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:3091",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:3084",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:3087"
+            ]
+          },
+          {
+            "supplier_norm": "AMEGREEN CHILDRENS SERVICES",
+            "tag": "care_education_placement",
+            "amount": 33320.4,
+            "rows": 2,
+            "first_date": "2026-06-17",
+            "last_date": "2026-06-17",
+            "gbp_rows_total": 66640.8,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2032",
+              "Over500_2026_P03_-_published.xlsx:Data to publish:2033"
+            ]
+          },
+          {
+            "supplier_norm": "AMEGREEN CHILDRENS SERVICES",
+            "tag": "care_education_placement",
+            "amount": 33320.4,
+            "rows": 2,
+            "first_date": "2026-05-26",
+            "last_date": "2026-05-28",
+            "gbp_rows_total": 66640.8,
+            "row_ids": [
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2091",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2108"
+            ]
+          },
+          {
+            "supplier_norm": "TWO SAINTS",
+            "tag": "general_procurement",
+            "amount": 27147.69,
+            "rows": 2,
+            "first_date": "2026-05-12",
+            "last_date": "2026-05-13",
+            "gbp_rows_total": 54295.38,
+            "row_ids": [
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2160",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2161"
+            ]
+          },
+          {
+            "supplier_norm": "BRIGHTER LIVING CARE",
+            "tag": "care_education_placement",
+            "amount": 26734.96,
+            "rows": 2,
+            "first_date": "2026-06-24",
+            "last_date": "2026-07-01",
+            "gbp_rows_total": 53469.92,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1708",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:2250"
+            ]
+          },
+          {
+            "supplier_norm": "BRIGHTER LIVING CARE",
+            "tag": "care_education_placement",
+            "amount": 26596.08,
+            "rows": 2,
+            "first_date": "2026-06-24",
+            "last_date": "2026-07-01",
+            "gbp_rows_total": 53192.16,
+            "row_ids": [
+              "Over500_2026_P03_-_published.xlsx:Data to publish:1656",
+              "Over500_2026_P04_-_published.xlsx:Data to publish:2249"
+            ]
+          },
+          {
+            "supplier_norm": "ACORN CARE EDUCATION",
+            "tag": "care_education_placement",
+            "amount": 25533.7,
+            "rows": 2,
+            "first_date": "2026-05-26",
+            "last_date": "2026-05-26",
+            "gbp_rows_total": 51067.4,
+            "row_ids": [
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2272",
+              "Over500_2026_P02_-_published.xlsx:Data to publish:2276"
+            ]
+          }
+        ]
+      },
+      "top20": [
+        {
+          "type": "different_dates",
+          "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+          "tag": "care_education_placement",
+          "amount": 20337.45,
+          "rows": 36,
+          "first_date": "2026-06-17",
+          "gbp_rows_total": 732148.2,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2164",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2165",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2166",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2167",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2189",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2190",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2311",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3106",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3107",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2169"
+          ],
+          "row_ids_note": "10 largest of 36; full list in CSV"
+        },
+        {
+          "type": "different_dates",
+          "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+          "tag": "care_education_placement",
+          "amount": 20534.9,
+          "rows": 13,
+          "first_date": "2026-06-17",
+          "gbp_rows_total": 266953.7,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2310",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2191",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2192",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2193",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2314",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3108",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2171",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2172",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2196",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2198"
+          ],
+          "row_ids_note": "10 largest of 13; full list in CSV"
+        },
+        {
+          "type": "different_dates",
+          "supplier_norm": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+          "tag": "care_education_placement",
+          "amount": 21988.16,
+          "rows": 10,
+          "first_date": "2026-05-19",
+          "gbp_rows_total": 219881.6,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2242",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2243",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2247",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2249",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2252",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2253",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2255",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2257",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2260",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2263"
+          ]
+        },
+        {
+          "type": "different_dates",
+          "supplier_norm": "VOLKERHIGHWAYS",
+          "tag": "general_procurement",
+          "amount": 101925.86,
+          "rows": 2,
+          "first_date": "2026-07-15",
+          "gbp_rows_total": 203851.72,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3308",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:618"
+          ]
+        },
+        {
+          "type": "same_timestamp",
+          "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+          "tag": "care_education_placement",
+          "amount": 20337.45,
+          "rows": 9,
+          "first_date": "2026-06-17",
+          "gbp_rows_total": 183037.05,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2164",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2165",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2166",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2167",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2189",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2190",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2311",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3106",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3107"
+          ]
+        },
+        {
+          "type": "same_timestamp",
+          "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+          "tag": "care_education_placement",
+          "amount": 20337.45,
+          "rows": 8,
+          "first_date": "2026-06-17",
+          "gbp_rows_total": 162699.6,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2177",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2203",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2204",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2321",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2322",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2323",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3114",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3115"
+          ]
+        },
+        {
+          "type": "same_timestamp",
+          "supplier_norm": "BUPA CARE SERVICES",
+          "tag": "care_education_placement",
+          "amount": 8476.52,
+          "rows": 18,
+          "first_date": "2026-07-08",
+          "gbp_rows_total": 152577.36,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1040",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1041",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1071",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1086",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1087",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1105",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1107",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1115",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1154",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1155"
+          ],
+          "row_ids_note": "10 largest of 18; full list in CSV"
+        },
+        {
+          "type": "same_timestamp",
+          "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+          "tag": "care_education_placement",
+          "amount": 20337.45,
+          "rows": 7,
+          "first_date": "2026-06-17",
+          "gbp_rows_total": 142362.15,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2175",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2176",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2199",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2200",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2201",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3112",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3113"
+          ]
+        },
+        {
+          "type": "same_timestamp",
+          "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+          "tag": "care_education_placement",
+          "amount": 20337.45,
+          "rows": 7,
+          "first_date": "2026-06-17",
+          "gbp_rows_total": 142362.15,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2173",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2195",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2315",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2316",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2317",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3110",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3111"
+          ]
+        },
+        {
+          "type": "different_dates",
+          "supplier_norm": "SUKHBIR SINGH AND HARVINDER SINGH T A CALCOT SERVICES FOR CHILDREN CSFC",
+          "tag": "care_education_placement",
+          "amount": 18768.75,
+          "rows": 6,
+          "first_date": "2026-06-03",
+          "gbp_rows_total": 112612.5,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2157",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2158",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3102",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2159",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3103",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2306"
+          ]
+        },
+        {
+          "type": "different_dates",
+          "supplier_norm": "VOLKERHIGHWAYS",
+          "tag": "general_procurement",
+          "amount": 54241.36,
+          "rows": 2,
+          "first_date": "2026-07-13",
+          "gbp_rows_total": 108482.72,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3210",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3302"
+          ]
+        },
+        {
+          "type": "same_timestamp",
+          "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+          "tag": "care_education_placement",
+          "amount": 20534.9,
+          "rows": 5,
+          "first_date": "2026-06-17",
+          "gbp_rows_total": 102674.5,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2191",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2192",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2193",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2314",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3108"
+          ]
+        },
+        {
+          "type": "same_timestamp",
+          "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+          "tag": "care_education_placement",
+          "amount": 20337.45,
+          "rows": 5,
+          "first_date": "2026-06-17",
+          "gbp_rows_total": 101687.25,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2169",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2170",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2312",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2313",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3109"
+          ]
+        },
+        {
+          "type": "different_dates",
+          "supplier_norm": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+          "tag": "care_education_placement",
+          "amount": 32711.33,
+          "rows": 3,
+          "first_date": "2026-05-19",
+          "gbp_rows_total": 98133.99,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2246",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2248",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2251"
+          ]
+        },
+        {
+          "type": "same_timestamp",
+          "supplier_norm": "BUPA CARE SERVICES",
+          "tag": "care_education_placement",
+          "amount": 5097.52,
+          "rows": 19,
+          "first_date": "2026-06-10",
+          "gbp_rows_total": 96852.88,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1011",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1027",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1028",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1336",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1477",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1759",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2709",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2710",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2844",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:837"
+          ],
+          "row_ids_note": "10 largest of 19; full list in CSV"
+        },
+        {
+          "type": "same_timestamp",
+          "supplier_norm": "BUPA CARE SERVICES",
+          "tag": "care_education_placement",
+          "amount": 5080.18,
+          "rows": 19,
+          "first_date": "2026-05-13",
+          "gbp_rows_total": 96523.42,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1035",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1037",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1038",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1039",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1040",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1455",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1456",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1457",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1850",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:868"
+          ],
+          "row_ids_note": "10 largest of 19; full list in CSV"
+        },
+        {
+          "type": "different_dates",
+          "supplier_norm": "HUCKLEBERRY HOUSE",
+          "tag": "care_education_placement",
+          "amount": 30918.75,
+          "rows": 3,
+          "first_date": "2026-05-26",
+          "gbp_rows_total": 92756.25,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2266",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2267",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2269"
+          ]
+        },
+        {
+          "type": "same_timestamp",
+          "supplier_norm": "BUPA CARE SERVICES",
+          "tag": "care_education_placement",
+          "amount": 5097.52,
+          "rows": 18,
+          "first_date": "2026-07-08",
+          "gbp_rows_total": 91755.36,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1033",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1034",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1037",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1072",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1081",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1083",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1104",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1136",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1137",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1820"
+          ],
+          "row_ids_note": "10 largest of 18; full list in CSV"
+        },
+        {
+          "type": "different_dates",
+          "supplier_norm": "CARE SERVICES TO YOU",
+          "tag": "care_education_placement",
+          "amount": 23989.77,
+          "rows": 3,
+          "first_date": "2026-07-17",
+          "gbp_rows_total": 71969.31,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3750",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3092",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3161"
+          ]
+        },
+        {
+          "type": "different_dates",
+          "supplier_norm": "CARE SERVICES TO YOU",
+          "tag": "care_education_placement",
+          "amount": 23989.77,
+          "rows": 3,
+          "first_date": "2026-06-16",
+          "gbp_rows_total": 71969.31,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2008",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1931",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3044"
+          ]
+        }
+      ],
+      "full_list": "outputs/analytics-full/duplicates.csv"
+    },
+    "expired_notice_spend": {
+      "status": "ran",
+      "rule_ids": [
+        "CPR-76"
+      ],
+      "parameters": {
+        "window_start": "2026-05-01",
+        "match": "exact normalised name, all matched notices",
+        "condition": "every matched notice End Date < window start"
+      },
+      "note": "Indicator for App C row D (extension needs S151 approval); a newer contract may exist without a notice.",
+      "matched_suppliers": 45,
+      "counts": {
+        "total": 7,
+        "by_tag": {
+          "premises": 2,
+          "general_procurement": 5
+        }
+      },
+      "gbp": {
+        "total": 190366.92,
+        "by_tag": {
+          "premises": 68721.94,
+          "general_procurement": 121644.98
+        }
+      },
+      "top20": [
+        {
+          "supplier_norm": "HOPE CLAY CONSTRUCTION",
+          "tag": "general_procurement",
+          "total_3m": 91306.75,
+          "annualised_estimate": 365227.0,
+          "latest_end": "2024-10-11",
+          "notices": "IT-402-1300-P00001300 - AWARD;IT-402-864-P00000864 - AWARD",
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:704"
+          ]
+        },
+        {
+          "supplier_norm": "BERKSHIRE MECHANICAL SERVICES",
+          "tag": "premises",
+          "total_3m": 68040.0,
+          "annualised_estimate": 272160.0,
+          "latest_end": "2024-03-31",
+          "notices": "IT-402-1083-P00001083 - AWARD",
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:58",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:42",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:279",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:52",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:374",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:369",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:59",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:76",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:77",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:33"
+          ],
+          "row_ids_note": "10 largest of 45; full list in CSV"
+        },
+        {
+          "supplier_norm": "G7 BUSINESS SOLUTIONS",
+          "tag": "general_procurement",
+          "total_3m": 16364.56,
+          "annualised_estimate": 65458.24,
+          "latest_end": "2023-01-18",
+          "notices": "G-Cloud 12 Framework",
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:531",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:467",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1309",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:721",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:762",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:903",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:468",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:426"
+          ]
+        },
+        {
+          "supplier_norm": "CACI",
+          "tag": "general_procurement",
+          "total_3m": 12071.67,
+          "annualised_estimate": 48286.68,
+          "latest_end": "2025-04-30",
+          "notices": "Youth Justice - ChildView",
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:459"
+          ]
+        },
+        {
+          "supplier_norm": "MORTON PATTISON",
+          "tag": "general_procurement",
+          "total_3m": 1102.0,
+          "annualised_estimate": 4408.0,
+          "latest_end": "2024-10-18",
+          "notices": "IT-402-1354-P00001354 - AWARD",
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:686"
+          ]
+        },
+        {
+          "supplier_norm": "DAVIS AND ASSOCIATES CONSULTANCY",
+          "tag": "general_procurement",
+          "total_3m": 800.0,
+          "annualised_estimate": 3200.0,
+          "latest_end": "2023-09-30",
+          "notices": "P00000986",
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:821"
+          ]
+        },
+        {
+          "supplier_norm": "TACTICAL FACILITIES MANAGEMENT",
+          "tag": "premises",
+          "total_3m": 681.94,
+          "annualised_estimate": 2727.76,
+          "latest_end": "2023-09-30",
+          "notices": "P00001043",
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:58"
+          ]
+        }
+      ],
+      "full_list": "outputs/analytics-full/expired_notice_spend.csv"
+    },
+    "spend_vs_award": {
+      "status": "ran",
+      "rule_ids": [
+        "CPR-77",
+        "CPR-78"
+      ],
+      "parameters": {
+        "ratio_flag": 1.25,
+        "years": "(End - Start).days / 365.25",
+        "ratio": "annualised estimate / (Awarded Value / years)",
+        "eligible": "exact match to exactly one live notice, single supplier, Awarded Value > 0"
+      },
+      "note": "Indicator for App C row E (variation approval); award values may be estimates or maxima.",
+      "eligible_suppliers": 18,
+      "eligible_list": "outputs/analytics-full/spend_vs_award_eligible.csv",
+      "counts": {
+        "total": 7,
+        "by_tag": {
+          "premises": 1,
+          "general_procurement": 6
+        }
+      },
+      "gbp": {
+        "total": 633768.19,
+        "by_tag": {
+          "premises": 7758.91,
+          "general_procurement": 626009.28
+        }
+      },
+      "top20": [
+        {
+          "supplier_norm": "NEC SOFTWARE SOLUTIONS UK",
+          "tag": "general_procurement",
+          "notice_id": "RM6259/CL766",
+          "awarded_value": 615540.0,
+          "years": 3.0,
+          "annualised_estimate": 1257534.28,
+          "ratio": 6.12,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:905",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:492",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:487",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:494",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:488",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:906",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:493",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:489",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:427",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:904"
+          ]
+        },
+        {
+          "supplier_norm": "TWO SAINTS",
+          "tag": "general_procurement",
+          "notice_id": "IT-402-1432-P00001432 - AWARD",
+          "awarded_value": 2500000.0,
+          "years": 5.0,
+          "annualised_estimate": 853153.8,
+          "ratio": 1.71,
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3181",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2130",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2162",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2161",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3781",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2160",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3080"
+          ]
+        },
+        {
+          "supplier_norm": "IDOX SOFTWARE",
+          "tag": "general_procurement",
+          "notice_id": "P00000844",
+          "awarded_value": 714533.0,
+          "years": 7.0,
+          "annualised_estimate": 204905.64,
+          "ratio": 2.01,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:371",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:462"
+          ]
+        },
+        {
+          "supplier_norm": "BOOKINGLAB",
+          "tag": "general_procurement",
+          "notice_id": "IT-402-1498-P00001498 - AWARD",
+          "awarded_value": 173000.0,
+          "years": 7.0,
+          "annualised_estimate": 96000.0,
+          "ratio": 3.88,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:396"
+          ]
+        },
+        {
+          "supplier_norm": "EXACOM SYSTEMS",
+          "tag": "general_procurement",
+          "notice_id": "G-Cloud 14 RM1557.14",
+          "awarded_value": 50358.0,
+          "years": 4.0,
+          "annualised_estimate": 48423.4,
+          "ratio": 3.84,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:384"
+          ]
+        },
+        {
+          "supplier_norm": "SOFTCAT",
+          "tag": "general_procurement",
+          "notice_id": "IT-402-1666-P00001666 - AWARD",
+          "awarded_value": 57907.0,
+          "years": 3.0,
+          "annualised_estimate": 44020.0,
+          "ratio": 2.28,
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:460",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:375"
+          ]
+        },
+        {
+          "supplier_norm": "SMS ENVIRONMENTAL",
+          "tag": "premises",
+          "notice_id": "IT-402-1599-P00001599 - AWARD",
+          "awarded_value": 26021.66,
+          "years": 2.0,
+          "annualised_estimate": 31035.64,
+          "ratio": 2.38,
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:276",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:365",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:29",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:17",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:19",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:55",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:80"
+          ]
+        }
+      ],
+      "full_list": "outputs/analytics-full/spend_vs_award.csv"
+    },
+    "high_value_suppliers": {
+      "status": "ran",
+      "rule_ids": [
+        "CPR-65",
+        "CPR-66"
+      ],
+      "parameters": {
+        "quote_threshold": 25000,
+        "comparison": ">=",
+        "basis": "annualised estimate"
+      },
+      "counts": {
+        "total": 672,
+        "by_tag": {
+          "agency_staff": 1,
+          "grant": 124,
+          "premises": 28,
+          "care_education_placement": 320,
+          "general_procurement": 199
+        }
+      },
+      "gbp": {
+        "total": 65100508.78,
+        "by_tag": {
+          "agency_staff": 1275552.15,
+          "grant": 5876513.55,
+          "premises": 965718.04,
+          "care_education_placement": 32164098.64,
+          "general_procurement": 24818626.4
+        }
+      },
+      "gbp_annualised_estimate": 260402035.12,
+      "notice_match": {
+        "none": 621,
+        "exact": 35,
+        "candidate": 16
+      },
+      "top20": [
+        {
+          "supplier_norm": "VOLKERHIGHWAYS",
+          "tag": "general_procurement",
+          "total_3m": 7377922.21,
+          "annualised_estimate": 29511688.84,
+          "payments": 126,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:793",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:603",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:684",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:699",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:709",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:701",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:729",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:711",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:702",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:619"
+          ],
+          "row_ids_note": "10 largest of 126; full list in CSV"
+        },
+        {
+          "supplier_norm": "VEOLIA ES WEST BERKSHIRE CHAPS ONLY",
+          "tag": "general_procurement",
+          "total_3m": 6186065.04,
+          "annualised_estimate": 24744260.16,
+          "payments": 3,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2196",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2146",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3194"
+          ]
+        },
+        {
+          "supplier_norm": "MILLBROOK HEALTHCARE",
+          "tag": "general_procurement",
+          "total_3m": 3459365.35,
+          "annualised_estimate": 13837461.4,
+          "payments": 4,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3789",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2216",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2144",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3311"
+          ]
+        },
+        {
+          "supplier_norm": "BUPA CARE SERVICES",
+          "tag": "care_education_placement",
+          "total_3m": 1874166.5,
+          "annualised_estimate": 7496666.0,
+          "payments": 370,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1850",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1039",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1120",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2908",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1824",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1073",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1043",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1952",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1087",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1825"
+          ],
+          "row_ids_note": "10 largest of 370; full list in CSV"
+        },
+        {
+          "supplier_norm": "COMENSURA",
+          "tag": "agency_staff",
+          "total_3m": 1275552.15,
+          "annualised_estimate": 5102208.6,
+          "payments": 14,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:9",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:5",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:19",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:12",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:6",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:7",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:11",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:9",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:8",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:10"
+          ],
+          "row_ids_note": "10 largest of 14; full list in CSV"
+        },
+        {
+          "supplier_norm": "AFFINITY TRUST SUPPORT",
+          "tag": "care_education_placement",
+          "total_3m": 1098336.76,
+          "annualised_estimate": 4393347.04,
+          "payments": 263,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2320",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1628",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2239",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1629",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2555",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1720",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3462",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2342",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1678",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2350"
+          ],
+          "row_ids_note": "10 largest of 263; full list in CSV"
+        },
+        {
+          "supplier_norm": "OAKLANDS SEN SCHOOL BERKSHIRE",
+          "tag": "care_education_placement",
+          "total_3m": 1026661.89,
+          "annualised_estimate": 4106647.56,
+          "payments": 54,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2320",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3108",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2319",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2310",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3116",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2314",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2196",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2172",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2198",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2191"
+          ],
+          "row_ids_note": "10 largest of 54; full list in CSV"
+        },
+        {
+          "supplier_norm": "RUSKIN MILL TRUST",
+          "tag": "care_education_placement",
+          "total_3m": 795197.64,
+          "annualised_estimate": 3180790.56,
+          "payments": 9,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:823",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1822",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:802",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1512",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2676",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:877",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3252",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3332",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:801"
+          ]
+        },
+        {
+          "supplier_norm": "AMEGREEN CHILDRENS SERVICES",
+          "tag": "care_education_placement",
+          "total_3m": 750437.33,
+          "annualised_estimate": 3001749.32,
+          "payments": 27,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2095",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3080",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2088",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1940",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1926",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1936",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2089",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3156",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3752",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2105"
+          ],
+          "row_ids_note": "10 largest of 27; full list in CSV"
+        },
+        {
+          "supplier_norm": "BRIGHTER LIVING CARE",
+          "tag": "care_education_placement",
+          "total_3m": 747183.47,
+          "annualised_estimate": 2988733.88,
+          "payments": 74,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3476",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2250",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2547",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1708",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1737",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3473",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2249",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1656",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1730",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2229"
+          ],
+          "row_ids_note": "10 largest of 74; full list in CSV"
+        },
+        {
+          "supplier_norm": "SUKHBIR SINGH AND HARVINDER SINGH T A CALCOT SERVICES FOR CHILDREN CSFC",
+          "tag": "care_education_placement",
+          "total_3m": 639381.6,
+          "annualised_estimate": 2557526.4,
+          "payments": 26,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2046",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2043",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2044",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2035",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2029",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2042",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3074",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2239",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2045",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1932"
+          ],
+          "row_ids_note": "10 largest of 26; full list in CSV"
+        },
+        {
+          "supplier_norm": "WE ARE THE CARE COMPANY",
+          "tag": "care_education_placement",
+          "total_3m": 589012.31,
+          "annualised_estimate": 2356049.24,
+          "payments": 349,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1358",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:858",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:838",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:957",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:896",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:956",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:921",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:889",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:855",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1374"
+          ],
+          "row_ids_note": "10 largest of 349; full list in CSV"
+        },
+        {
+          "supplier_norm": "THE BETTER GROUP",
+          "tag": "care_education_placement",
+          "total_3m": 588490.08,
+          "annualised_estimate": 2353960.32,
+          "payments": 26,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:665",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:666",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:670",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:783",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:667",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:912",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:18",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1281",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:13",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2397"
+          ],
+          "row_ids_note": "10 largest of 26; full list in CSV"
+        },
+        {
+          "supplier_norm": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+          "tag": "care_education_placement",
+          "total_3m": 567708.85,
+          "annualised_estimate": 2270835.4,
+          "payments": 25,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2254",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2244",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2246",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2248",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2251",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2245",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2262",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2258",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2259",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2229"
+          ],
+          "row_ids_note": "10 largest of 25; full list in CSV"
+        },
+        {
+          "supplier_norm": "VOYAGE CARE",
+          "tag": "care_education_placement",
+          "total_3m": 554678.88,
+          "annualised_estimate": 2218715.52,
+          "payments": 80,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2161",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1642",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1465",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2182",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1641",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1405",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1758",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1836",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3575",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1680"
+          ],
+          "row_ids_note": "10 largest of 80; full list in CSV"
+        },
+        {
+          "supplier_norm": "GCH ALDER T A HUNGERFORD CARE HOME",
+          "tag": "care_education_placement",
+          "total_3m": 545531.64,
+          "annualised_estimate": 2182126.56,
+          "payments": 104,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1508",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1454",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1573",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:1497",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1018",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2714",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1050",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:1506",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1097",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:2023"
+          ],
+          "row_ids_note": "10 largest of 104; full list in CSV"
+        },
+        {
+          "supplier_norm": "SOFTWAREONE UK",
+          "tag": "general_procurement",
+          "total_3m": 522978.62,
+          "annualised_estimate": 2091914.48,
+          "payments": 4,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:473",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:474",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:653",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:654"
+          ]
+        },
+        {
+          "supplier_norm": "LIVITY LIFE",
+          "tag": "general_procurement",
+          "total_3m": 513074.85,
+          "annualised_estimate": 2052299.4,
+          "payments": 9,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2200",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3087",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3310",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3197",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:2199",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3215",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:3088",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:3196",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:2218"
+          ]
+        },
+        {
+          "supplier_norm": "WEST BERKSHIRE MENCAP",
+          "tag": "care_education_placement",
+          "total_3m": 505286.21,
+          "annualised_estimate": 2021144.84,
+          "payments": 115,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:785",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:1415",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:680",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:758",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:682",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:763",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:869",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:782",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:681",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:762"
+          ],
+          "row_ids_note": "10 largest of 115; full list in CSV"
+        },
+        {
+          "supplier_norm": "PURLEY PARK TRUST",
+          "tag": "care_education_placement",
+          "total_3m": 471283.82,
+          "annualised_estimate": 1885135.28,
+          "payments": 94,
+          "notice_match": "none",
+          "row_ids": [
+            "Over500_2026_P03_-_published.xlsx:Data to publish:772",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:649",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:777",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:773",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:847",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:781",
+            "Over500_2026_P03_-_published.xlsx:Data to publish:753",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:806",
+            "Over500_2026_P02_-_published.xlsx:Data to publish:776",
+            "Over500_2026_P04_-_published.xlsx:Data to publish:687"
+          ],
+          "row_ids_note": "10 largest of 94; full list in CSV"
+        }
+      ],
+      "full_list": "outputs/analytics-full/high_value_suppliers.csv"
+    }
+  },
+  "language_note": "All results are risk indicators to investigate. None states or implies wrongdoing.",
+  "self_check": {
+    "script": "scripts/self_check.py",
+    "result": "PASS",
+    "checked_at": "2026-10-07T23:27:08",
+    "lines": [
+      "threshold_clustering: OK Over500_2026_P04_-_published.xlsx:Data to publish:2239 24926.0 in band of 25000",
+      "split_purchases: OK VEOLIA ES WEST BERKSHIRE CHAPS ONLY: 2 payments total 3984208.64 >= 2500000 within 28d",
+      "off_contract: OK VOLKERHIGHWAYS: annualised 29511688.84 vs 25000 (CPR-66), no live notice",
+      "duplicates: OK different_dates OAKLANDS SEN SCHOOL BERKSHIRE: 36 x 20337.45",
+      "expired_notice_spend: OK HOPE CLAY CONSTRUCTION: latest end 2024-10-11 < 2026-05-01, paid 91306.75",
+      "spend_vs_award: OK NEC SOFTWARE SOLUTIONS UK RM6259/CL766: end 2026-07-31, award 615540.00, ratio 6.125",
+      "high_value_suppliers: OK VOLKERHIGHWAYS: total 7377922.21, annualised 29511688.84 vs 25000 (CPR-65), match none"
+    ]
+  }
+}

@@ -1,0 +1,2036 @@
+{
+ "built": "2026-10-08",
+ "register_revision": 2,
+ "sample_sizes_by_score": [
+  {
+   "min_score": 15,
+   "units": 25
+  },
+  {
+   "min_score": 8,
+   "units": 15
+  },
+  {
+   "min_score": 4,
+   "units": 8
+  },
+  {
+   "min_score": 1,
+   "units": 3
+  }
+ ],
+ "risks": {
+  "R-01": {
+   "likelihood": 4,
+   "impact": 3,
+   "score": 12,
+   "band": "Medium - High (Amber) [matrix: High]",
+   "sample_size": 15,
+   "controls": 2,
+   "tests": 3
+  },
+  "R-02": {
+   "likelihood": 4,
+   "impact": 2,
+   "score": 8,
+   "band": "Medium - High (Amber) [matrix: High]",
+   "sample_size": 15,
+   "controls": 2,
+   "tests": 2
+  },
+  "R-03": {
+   "likelihood": 3,
+   "impact": 4,
+   "score": 12,
+   "band": "Medium - High (Amber) [matrix: High]",
+   "sample_size": 15,
+   "controls": 1,
+   "tests": 2
+  },
+  "R-04": {
+   "likelihood": 3,
+   "impact": 3,
+   "score": 9,
+   "band": "Medium - High (Amber) [matrix: High]",
+   "sample_size": 15,
+   "controls": 1,
+   "tests": 2
+  },
+  "R-05": {
+   "likelihood": 3,
+   "impact": 3,
+   "score": 9,
+   "band": "Medium - High (Amber) [matrix: High]",
+   "sample_size": 15,
+   "controls": 1,
+   "tests": 1
+  },
+  "R-06": {
+   "likelihood": 3,
+   "impact": 3,
+   "score": 9,
+   "band": "Medium - High (Amber) [matrix: High]",
+   "sample_size": 15,
+   "controls": 1,
+   "tests": 1
+  },
+  "R-07": {
+   "likelihood": 3,
+   "impact": 5,
+   "score": 15,
+   "band": "Extreme (Red)",
+   "sample_size": 25,
+   "controls": 1,
+   "tests": 4
+  },
+  "R-08": {
+   "likelihood": 3,
+   "impact": 3,
+   "score": 9,
+   "band": "Medium - High (Amber) [matrix: High]",
+   "sample_size": 15,
+   "controls": 1,
+   "tests": 1
+  },
+  "R-09": {
+   "likelihood": 3,
+   "impact": 3,
+   "score": 9,
+   "band": "Medium - High (Amber) [matrix: High]",
+   "sample_size": 15,
+   "controls": 1,
+   "tests": 2
+  }
+ },
+ "samples": {
+  "T-01": {
+   "risk": "R-01",
+   "kind": "file",
+   "file": "threshold_clustering.csv",
+   "population": 9,
+   "size": 15,
+   "units": 9,
+   "transactions": 9,
+   "gbp": 214195.07,
+   "sample_file": "outputs/samples/T-01.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "TRIPLE VALUE IMPACT",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24244.0
+    },
+    {
+     "unit": 2,
+     "supplier": "DEVCOMMS SOUTH EAST",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24227.07
+    },
+    {
+     "unit": 3,
+     "supplier": "THE BETTER GROUP",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24088.98
+    },
+    {
+     "unit": 4,
+     "supplier": "BOOKINGLAB",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24000.0
+    },
+    {
+     "unit": 5,
+     "supplier": "ELIOR UK",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 23694.03
+    },
+    {
+     "unit": 6,
+     "supplier": "READING WEST APARTHOTEL",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 23660.0
+    },
+    {
+     "unit": 7,
+     "supplier": "VOLKERHIGHWAYS",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 23591.22
+    },
+    {
+     "unit": 8,
+     "supplier": "ELIOR UK",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 23516.69
+    },
+    {
+     "unit": 9,
+     "supplier": "ELIOR UK",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 23173.08
+    }
+   ]
+  },
+  "T-02": {
+   "risk": "R-01",
+   "kind": "file",
+   "file": "threshold_clustering.csv",
+   "population": 31,
+   "size": 15,
+   "units": 15,
+   "transactions": 15,
+   "gbp": 365591.4,
+   "sample_file": "outputs/samples/T-02.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "AFFINITY TRUST SUPPORT",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24926.0
+    },
+    {
+     "unit": 2,
+     "supplier": "SUKHBIR SINGH AND HARVINDER SINGH T A CALCOT SERVICES FOR CHILDREN CSFC",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24788.75
+    },
+    {
+     "unit": 3,
+     "supplier": "FOCUS SUPPORT",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24719.02
+    },
+    {
+     "unit": 4,
+     "supplier": "SUKHBIR SINGH AND HARVINDER SINGH T A CALCOT SERVICES FOR CHILDREN CSFC",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24618.75
+    },
+    {
+     "unit": 5,
+     "supplier": "UNITY RESIDENTIAL CARE SERVICES",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24587.49
+    },
+    {
+     "unit": 6,
+     "supplier": "ACORN CARE EDUCATION",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24578.67
+    },
+    {
+     "unit": 7,
+     "supplier": "THE BETTER GROUP",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24476.02
+    },
+    {
+     "unit": 8,
+     "supplier": "HUCKLEBERRY HOUSE",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24453.39
+    },
+    {
+     "unit": 9,
+     "supplier": "UTOPIA SUPPORTED HOUSING",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24383.88
+    },
+    {
+     "unit": 10,
+     "supplier": "ACORN CARE EDUCATION",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24110.58
+    },
+    {
+     "unit": 11,
+     "supplier": "CARE SERVICES TO YOU",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 23989.77
+    },
+    {
+     "unit": 12,
+     "supplier": "CARE SERVICES TO YOU",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 23989.77
+    },
+    {
+     "unit": 13,
+     "supplier": "CARE SERVICES TO YOU",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 23989.77
+    },
+    {
+     "unit": 14,
+     "supplier": "CARE SERVICES TO YOU",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 23989.77
+    },
+    {
+     "unit": 15,
+     "supplier": "CARE SERVICES TO YOU",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 23989.77
+    }
+   ]
+  },
+  "T-03": {
+   "risk": "R-01",
+   "kind": "file",
+   "file": "split_purchases.csv",
+   "population": 65,
+   "size": 15,
+   "units": 15,
+   "transactions": 42,
+   "gbp": 625033.52,
+   "sample_file": "outputs/samples/T-03.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "DEVCOMMS SOUTH EAST",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 38785.3
+    },
+    {
+     "unit": 2,
+     "supplier": "READING WEST APARTHOTEL",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 44616.0
+    },
+    {
+     "unit": 3,
+     "supplier": "RACKLINE",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 25510.0
+    },
+    {
+     "unit": 4,
+     "supplier": "PRUDENTIAL",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 35156.1
+    },
+    {
+     "unit": 5,
+     "supplier": "PRUDENTIAL",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 33817.34
+    },
+    {
+     "unit": 6,
+     "supplier": "ELIOR UK",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 53392.85
+    },
+    {
+     "unit": 7,
+     "supplier": "INSIGHT DIRECT UK",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 37014.07
+    },
+    {
+     "unit": 8,
+     "supplier": "HOME FRONT",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 50196.78
+    },
+    {
+     "unit": 9,
+     "supplier": "A E BUILDERS BASINGSTOKE",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 33497.0
+    },
+    {
+     "unit": 10,
+     "supplier": "SOLUTIONS4HEALTH",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 36944.37
+    },
+    {
+     "unit": 11,
+     "supplier": "CONVERGENT TECHNOLOGY",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 27160.54
+    },
+    {
+     "unit": 12,
+     "supplier": "TRADING STANDARDS SOUTH EAST",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 27509.57
+    },
+    {
+     "unit": 13,
+     "supplier": "COMMERCIAL SERVICES KENT",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 26549.25
+    },
+    {
+     "unit": 14,
+     "supplier": "THE BETTER GROUP",
+     "transactions": 4,
+     "repeated": 0,
+     "gbp": 77145.4
+    },
+    {
+     "unit": 15,
+     "supplier": "ELIOR UK",
+     "transactions": 4,
+     "repeated": 0,
+     "gbp": 77738.95
+    }
+   ]
+  },
+  "T-04": {
+   "risk": "R-02",
+   "kind": "file",
+   "file": "threshold_clustering.csv",
+   "population": 91,
+   "size": 15,
+   "units": 15,
+   "transactions": 15,
+   "gbp": 14379.75,
+   "sample_file": "outputs/samples/T-04.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "ALAN FULLER",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 1000.0
+    },
+    {
+     "unit": 2,
+     "supplier": "ROADSIDE TECHNOLOGIES",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 1000.0
+    },
+    {
+     "unit": 3,
+     "supplier": "BECKY TURNER",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 1000.0
+    },
+    {
+     "unit": 4,
+     "supplier": "PRESTIGE NETWORK",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 993.48
+    },
+    {
+     "unit": 5,
+     "supplier": "KB REAL ESTATE MANAGEMENT",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 990.0
+    },
+    {
+     "unit": 6,
+     "supplier": "360 SECURITY SUPPORT SERVICES",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 980.89
+    },
+    {
+     "unit": 7,
+     "supplier": "BERKSHIRE MECHANICAL SERVICES",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 975.0
+    },
+    {
+     "unit": 8,
+     "supplier": "PREMIER CARS",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 968.0
+    },
+    {
+     "unit": 9,
+     "supplier": "INSIGHT DIRECT UK",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 958.46
+    },
+    {
+     "unit": 10,
+     "supplier": "WSP UK",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 942.18
+    },
+    {
+     "unit": 11,
+     "supplier": "GLEN CLEANING COMPANY",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 930.63
+    },
+    {
+     "unit": 12,
+     "supplier": "BRITS AIRPORT CARS",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 920.0
+    },
+    {
+     "unit": 13,
+     "supplier": "EXPERT ACCESS SOLUTIONS",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 914.0
+    },
+    {
+     "unit": 14,
+     "supplier": "EVM DIRECT",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 905.34
+    },
+    {
+     "unit": 15,
+     "supplier": "GLEN CLEANING COMPANY",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 901.77
+    }
+   ]
+  },
+  "T-05": {
+   "risk": "R-02",
+   "kind": "file",
+   "file": "split_purchases.csv",
+   "population": 111,
+   "size": 15,
+   "units": 15,
+   "transactions": 30,
+   "gbp": 24633.69,
+   "sample_file": "outputs/samples/T-05.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "BECKY TURNER",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1750.0
+    },
+    {
+     "unit": 2,
+     "supplier": "MECE FIRE SECURITY",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1600.56
+    },
+    {
+     "unit": 3,
+     "supplier": "POTTINGER S HIRE SERVICE",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1715.83
+    },
+    {
+     "unit": 4,
+     "supplier": "ADF ENVIRONMENTAL",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1800.0
+    },
+    {
+     "unit": 5,
+     "supplier": "AMBITION 24 HOURS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1572.31
+    },
+    {
+     "unit": 6,
+     "supplier": "VOLKERHIGHWAYS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1775.84
+    },
+    {
+     "unit": 7,
+     "supplier": "SPIRE RIDGE BOARDING KENNELS AND CATTERY",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1674.0
+    },
+    {
+     "unit": 8,
+     "supplier": "SEISMIC SEWAGE SYSTEMS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1540.0
+    },
+    {
+     "unit": 9,
+     "supplier": "G7 BUSINESS SOLUTIONS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1505.0
+    },
+    {
+     "unit": 10,
+     "supplier": "DWP DEBT MANAGEMENT",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1702.13
+    },
+    {
+     "unit": 11,
+     "supplier": "SOUTHERN MEDICAL",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1766.84
+    },
+    {
+     "unit": 12,
+     "supplier": "SSE ENERGY SOLUTIONS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1750.51
+    },
+    {
+     "unit": 13,
+     "supplier": "BROADWAY CARS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1500.67
+    },
+    {
+     "unit": 14,
+     "supplier": "M ALLUM PLUMBING HEATING ENGINEERS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1428.0
+    },
+    {
+     "unit": 15,
+     "supplier": "CRESCENT SIGNS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1552.0
+    }
+   ]
+  },
+  "T-06": {
+   "risk": "R-03",
+   "kind": "file",
+   "file": "split_purchases.csv",
+   "population": 3,
+   "size": 15,
+   "units": 3,
+   "transactions": 113,
+   "gbp": 10261095.31,
+   "sample_file": "outputs/samples/T-06.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "VEOLIA ES WEST BERKSHIRE CHAPS ONLY",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 3984208.64
+    },
+    {
+     "unit": 2,
+     "supplier": "VOLKERHIGHWAYS",
+     "transactions": 56,
+     "repeated": 0,
+     "gbp": 3289410.7
+    },
+    {
+     "unit": 3,
+     "supplier": "VOLKERHIGHWAYS",
+     "transactions": 55,
+     "repeated": 0,
+     "gbp": 2987475.97
+    }
+   ]
+  },
+  "T-16": {
+   "risk": "R-03",
+   "kind": "file",
+   "file": "split_purchases.csv",
+   "population": 8,
+   "size": 15,
+   "units": 8,
+   "transactions": 642,
+   "gbp": 5902975.78,
+   "sample_file": "outputs/samples/T-16.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "BUPA CARE SERVICES",
+     "transactions": 248,
+     "repeated": 0,
+     "gbp": 1259714.57
+    },
+    {
+     "unit": 2,
+     "supplier": "OAKLANDS SEN SCHOOL BERKSHIRE",
+     "transactions": 54,
+     "repeated": 0,
+     "gbp": 1026661.89
+    },
+    {
+     "unit": 3,
+     "supplier": "AFFINITY TRUST SUPPORT",
+     "transactions": 182,
+     "repeated": 0,
+     "gbp": 813496.97
+    },
+    {
+     "unit": 4,
+     "supplier": "BUPA CARE SERVICES",
+     "transactions": 120,
+     "repeated": 0,
+     "gbp": 605975.41
+    },
+    {
+     "unit": 5,
+     "supplier": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+     "transactions": 23,
+     "repeated": 0,
+     "gbp": 566088.82
+    },
+    {
+     "unit": 6,
+     "supplier": "COMENSURA",
+     "transactions": 6,
+     "repeated": 0,
+     "gbp": 557962.29
+    },
+    {
+     "unit": 7,
+     "supplier": "RUSKIN MILL TRUST",
+     "transactions": 5,
+     "repeated": 0,
+     "gbp": 550097.21
+    },
+    {
+     "unit": 8,
+     "supplier": "SOFTWAREONE UK",
+     "transactions": 4,
+     "repeated": 0,
+     "gbp": 522978.62
+    }
+   ]
+  },
+  "T-07": {
+   "risk": "R-04",
+   "kind": "file",
+   "file": "off_contract.csv",
+   "population": 197,
+   "size": 15,
+   "units": 15,
+   "transactions": 303,
+   "gbp": 20564580.47,
+   "sample_file": "outputs/samples/T-07.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "VOLKERHIGHWAYS",
+     "transactions": 126,
+     "repeated": 0,
+     "gbp": 7377922.21
+    },
+    {
+     "unit": 2,
+     "supplier": "VEOLIA ES WEST BERKSHIRE CHAPS ONLY",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 6186065.04
+    },
+    {
+     "unit": 3,
+     "supplier": "MILLBROOK HEALTHCARE",
+     "transactions": 4,
+     "repeated": 0,
+     "gbp": 3459365.35
+    },
+    {
+     "unit": 4,
+     "supplier": "COMENSURA",
+     "transactions": 14,
+     "repeated": 0,
+     "gbp": 1275552.15
+    },
+    {
+     "unit": 5,
+     "supplier": "SOFTWAREONE UK",
+     "transactions": 4,
+     "repeated": 0,
+     "gbp": 522978.62
+    },
+    {
+     "unit": 6,
+     "supplier": "LIVITY LIFE",
+     "transactions": 9,
+     "repeated": 0,
+     "gbp": 513074.85
+    },
+    {
+     "unit": 7,
+     "supplier": "SIKANDAR HAYAT T A PROMPT CARS",
+     "transactions": 40,
+     "repeated": 0,
+     "gbp": 187250.5
+    },
+    {
+     "unit": 8,
+     "supplier": "ELIOR UK",
+     "transactions": 9,
+     "repeated": 0,
+     "gbp": 161415.59
+    },
+    {
+     "unit": 9,
+     "supplier": "BBOWT",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 144317.43
+    },
+    {
+     "unit": 10,
+     "supplier": "A2 DOMINION",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 136612.06
+    },
+    {
+     "unit": 11,
+     "supplier": "BROADWAY CARS",
+     "transactions": 46,
+     "repeated": 0,
+     "gbp": 131938.93
+    },
+    {
+     "unit": 12,
+     "supplier": "ANCHOR PIPEWORK",
+     "transactions": 36,
+     "repeated": 0,
+     "gbp": 127841.41
+    },
+    {
+     "unit": 13,
+     "supplier": "KPMG",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 119155.0
+    },
+    {
+     "unit": 14,
+     "supplier": "SCOTTISH SOUTHERN",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 110760.98
+    },
+    {
+     "unit": 15,
+     "supplier": "EDUCATION SOFTWARE SOLUTIONS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 110330.35
+    }
+   ]
+  },
+  "T-08": {
+   "risk": "R-04",
+   "kind": "file",
+   "file": "off_contract.csv",
+   "population": 16,
+   "size": 15,
+   "units": 15,
+   "transactions": 281,
+   "gbp": 884360.11,
+   "sample_file": "outputs/samples/T-08.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "SIKANDAR HAYAT T A PROMPT CARS",
+     "transactions": 40,
+     "repeated": 0,
+     "gbp": 187250.5
+    },
+    {
+     "unit": 2,
+     "supplier": "BROADWAY CARS",
+     "transactions": 46,
+     "repeated": 0,
+     "gbp": 131938.93
+    },
+    {
+     "unit": 3,
+     "supplier": "WCL UK TRADING AS EVERYTHING ICT",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 102882.78
+    },
+    {
+     "unit": 4,
+     "supplier": "GLEN CLEANING COMPANY",
+     "transactions": 68,
+     "repeated": 0,
+     "gbp": 92393.12
+    },
+    {
+     "unit": 5,
+     "supplier": "D J TRAVEL",
+     "transactions": 16,
+     "repeated": 0,
+     "gbp": 67966.91
+    },
+    {
+     "unit": 6,
+     "supplier": "ABC TRAVEL WOKINGHAM T A ABC TRAVEL",
+     "transactions": 24,
+     "repeated": 0,
+     "gbp": 63141.0
+    },
+    {
+     "unit": 7,
+     "supplier": "SOUTHERN COACH LINES",
+     "transactions": 16,
+     "repeated": 0,
+     "gbp": 55531.89
+    },
+    {
+     "unit": 8,
+     "supplier": "SWAN ADVOCACY",
+     "transactions": 8,
+     "repeated": 0,
+     "gbp": 51216.0
+    },
+    {
+     "unit": 9,
+     "supplier": "MARK DILLON T A PENMAR TRANSPORT",
+     "transactions": 15,
+     "repeated": 0,
+     "gbp": 35282.0
+    },
+    {
+     "unit": 10,
+     "supplier": "THE ADVOCACY PEOPLE FORMERLY SEAP",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 31653.23
+    },
+    {
+     "unit": 11,
+     "supplier": "S RICHARDS T AS K RICKETTS S RICHARDS TAXIS",
+     "transactions": 8,
+     "repeated": 0,
+     "gbp": 17144.0
+    },
+    {
+     "unit": 12,
+     "supplier": "MRS M F RICHARDSON T A MFR CONTRACTS",
+     "transactions": 13,
+     "repeated": 0,
+     "gbp": 15365.0
+    },
+    {
+     "unit": 13,
+     "supplier": "N MEHMOOD T A A STAR EXECUTIVE CARS",
+     "transactions": 7,
+     "repeated": 0,
+     "gbp": 12489.0
+    },
+    {
+     "unit": 14,
+     "supplier": "ELITE SECURITY GROUP",
+     "transactions": 9,
+     "repeated": 0,
+     "gbp": 10178.25
+    },
+    {
+     "unit": 15,
+     "supplier": "NADEEM MIRZA TRADING AS PARKER TRAVELS",
+     "transactions": 7,
+     "repeated": 0,
+     "gbp": 9927.5
+    }
+   ]
+  },
+  "T-09": {
+   "risk": "R-05",
+   "kind": "file",
+   "file": "expired_notice_spend.csv",
+   "population": 7,
+   "size": 15,
+   "units": 7,
+   "transactions": 58,
+   "gbp": 190366.92,
+   "sample_file": "outputs/samples/T-09.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "HOPE CLAY CONSTRUCTION",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 91306.75
+    },
+    {
+     "unit": 2,
+     "supplier": "BERKSHIRE MECHANICAL SERVICES",
+     "transactions": 45,
+     "repeated": 0,
+     "gbp": 68040.0
+    },
+    {
+     "unit": 3,
+     "supplier": "G7 BUSINESS SOLUTIONS",
+     "transactions": 8,
+     "repeated": 0,
+     "gbp": 16364.56
+    },
+    {
+     "unit": 4,
+     "supplier": "CACI",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 12071.67
+    },
+    {
+     "unit": 5,
+     "supplier": "MORTON PATTISON",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 1102.0
+    },
+    {
+     "unit": 6,
+     "supplier": "DAVIS AND ASSOCIATES CONSULTANCY",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 800.0
+    },
+    {
+     "unit": 7,
+     "supplier": "TACTICAL FACILITIES MANAGEMENT",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 681.94
+    }
+   ]
+  },
+  "T-10": {
+   "risk": "R-06",
+   "kind": "file",
+   "file": "spend_vs_award.csv",
+   "population": 7,
+   "size": 15,
+   "units": 7,
+   "transactions": 30,
+   "gbp": 633768.19,
+   "sample_file": "outputs/samples/T-10.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "NEC SOFTWARE SOLUTIONS UK",
+     "transactions": 10,
+     "repeated": 0,
+     "gbp": 314383.57
+    },
+    {
+     "unit": 2,
+     "supplier": "BOOKINGLAB",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 24000.0
+    },
+    {
+     "unit": 3,
+     "supplier": "EXACOM SYSTEMS",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 12105.85
+    },
+    {
+     "unit": 4,
+     "supplier": "SMS ENVIRONMENTAL",
+     "transactions": 7,
+     "repeated": 0,
+     "gbp": 7758.91
+    },
+    {
+     "unit": 5,
+     "supplier": "SOFTCAT",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 11005.0
+    },
+    {
+     "unit": 6,
+     "supplier": "IDOX SOFTWARE",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 51226.41
+    },
+    {
+     "unit": 7,
+     "supplier": "TWO SAINTS",
+     "transactions": 7,
+     "repeated": 0,
+     "gbp": 213288.45
+    }
+   ]
+  },
+  "T-11": {
+   "risk": "R-07",
+   "kind": "file",
+   "file": "duplicates.csv",
+   "population": 23,
+   "size": 25,
+   "units": 23,
+   "transactions": 55,
+   "gbp": 540201.72,
+   "sample_file": "outputs/samples/T-11.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "VOLKERHIGHWAYS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 203851.72
+    },
+    {
+     "unit": 2,
+     "supplier": "VOLKERHIGHWAYS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 108482.72
+    },
+    {
+     "unit": 3,
+     "supplier": "TWO SAINTS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 54295.38
+    },
+    {
+     "unit": 4,
+     "supplier": "VOLKERHIGHWAYS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 35764.7
+    },
+    {
+     "unit": 5,
+     "supplier": "ROADSIDE TECHNOLOGIES",
+     "transactions": 4,
+     "repeated": 0,
+     "gbp": 22376.44
+    },
+    {
+     "unit": 6,
+     "supplier": "BROADWAY CARS",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 15990.0
+    },
+    {
+     "unit": 7,
+     "supplier": "PAVILLION PUBLISHING AND MEDIA",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 18169.2
+    },
+    {
+     "unit": 8,
+     "supplier": "BROADWAY CARS",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 11700.0
+    },
+    {
+     "unit": 9,
+     "supplier": "BROADWAY CARS",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 10920.0
+    },
+    {
+     "unit": 10,
+     "supplier": "LOCAL GOVERNMENT PROPERTY CONSULTANTS LGPC",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 9850.0
+    },
+    {
+     "unit": 11,
+     "supplier": "BRITISH TELECOM",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 8728.12
+    },
+    {
+     "unit": 12,
+     "supplier": "FD TRAVELS T A SCHOOL EXPRESS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 8036.0
+    },
+    {
+     "unit": 13,
+     "supplier": "FD TRAVELS T A SCHOOL EXPRESS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 5488.0
+    },
+    {
+     "unit": 14,
+     "supplier": "AMR CONSULT",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 5330.54
+    },
+    {
+     "unit": 15,
+     "supplier": "CRESCENT SIGNS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 4600.0
+    },
+    {
+     "unit": 16,
+     "supplier": "VALLEY CARS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 4008.0
+    },
+    {
+     "unit": 17,
+     "supplier": "READING REFUGEE SUPPORT GROUP",
+     "transactions": 4,
+     "repeated": 0,
+     "gbp": 2396.72
+    },
+    {
+     "unit": 18,
+     "supplier": "CHIPSIDE",
+     "transactions": 4,
+     "repeated": 0,
+     "gbp": 2080.0
+    },
+    {
+     "unit": 19,
+     "supplier": "AERO PROPERTY CONSULTANTS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 2560.0
+    },
+    {
+     "unit": 20,
+     "supplier": "COMPASS EXECUTIVE CARS UK",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1488.0
+    },
+    {
+     "unit": 21,
+     "supplier": "READING REFUGEE SUPPORT GROUP",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1486.18
+    },
+    {
+     "unit": 22,
+     "supplier": "EDGE TRAINING AND CONSULTANCY",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1400.0
+    },
+    {
+     "unit": 23,
+     "supplier": "MR I GRAHAM T A COMMUNITY SAFETY TRAINING",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1200.0
+    }
+   ]
+  },
+  "T-17": {
+   "risk": "R-07",
+   "kind": "file",
+   "file": "duplicates.csv",
+   "population": 28,
+   "size": 25,
+   "units": 25,
+   "transactions": 94,
+   "gbp": 117456.31,
+   "sample_file": "outputs/samples/T-17.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "KB REAL ESTATE MANAGEMENT",
+     "transactions": 9,
+     "repeated": 0,
+     "gbp": 12555.0
+    },
+    {
+     "unit": 2,
+     "supplier": "KB REAL ESTATE MANAGEMENT",
+     "transactions": 9,
+     "repeated": 0,
+     "gbp": 12150.0
+    },
+    {
+     "unit": 3,
+     "supplier": "KB REAL ESTATE MANAGEMENT",
+     "transactions": 8,
+     "repeated": 0,
+     "gbp": 10800.0
+    },
+    {
+     "unit": 4,
+     "supplier": "KB REAL ESTATE MANAGEMENT",
+     "transactions": 6,
+     "repeated": 0,
+     "gbp": 11160.0
+    },
+    {
+     "unit": 5,
+     "supplier": "KB REAL ESTATE MANAGEMENT",
+     "transactions": 6,
+     "repeated": 0,
+     "gbp": 10800.0
+    },
+    {
+     "unit": 6,
+     "supplier": "KB REAL ESTATE MANAGEMENT",
+     "transactions": 6,
+     "repeated": 0,
+     "gbp": 10800.0
+    },
+    {
+     "unit": 7,
+     "supplier": "CONNICK TREE CARE",
+     "transactions": 6,
+     "repeated": 0,
+     "gbp": 6056.4
+    },
+    {
+     "unit": 8,
+     "supplier": "DIMENSIONS NSO",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 5897.08
+    },
+    {
+     "unit": 9,
+     "supplier": "KB REAL ESTATE MANAGEMENT",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 5700.0
+    },
+    {
+     "unit": 10,
+     "supplier": "SPARE CRIB GLOBAL",
+     "transactions": 4,
+     "repeated": 0,
+     "gbp": 3220.0
+    },
+    {
+     "unit": 11,
+     "supplier": "GLEN CLEANING COMPANY",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 2705.31
+    },
+    {
+     "unit": 12,
+     "supplier": "GLEN CLEANING COMPANY",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 2339.34
+    },
+    {
+     "unit": 13,
+     "supplier": "GLEN CLEANING COMPANY",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 3067.98
+    },
+    {
+     "unit": 14,
+     "supplier": "TENNENT HOMES 2019",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 1800.0
+    },
+    {
+     "unit": 15,
+     "supplier": "TENNENT HOMES 2019",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 1800.0
+    },
+    {
+     "unit": 16,
+     "supplier": "TENNENT HOMES 2019",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 1800.0
+    },
+    {
+     "unit": 17,
+     "supplier": "CONNICK TREE CARE",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 2266.0
+    },
+    {
+     "unit": 18,
+     "supplier": "BERKSHIRE MECHANICAL SERVICES",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 1635.0
+    },
+    {
+     "unit": 19,
+     "supplier": "GLEN CLEANING COMPANY",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1782.18
+    },
+    {
+     "unit": 20,
+     "supplier": "PRIMANAGE",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1739.86
+    },
+    {
+     "unit": 21,
+     "supplier": "BERKSHIRE MECHANICAL SERVICES",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1600.0
+    },
+    {
+     "unit": 22,
+     "supplier": "TENNENT HOMES 2019",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1500.0
+    },
+    {
+     "unit": 23,
+     "supplier": "TENNENT HOMES 2019",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1500.0
+    },
+    {
+     "unit": 24,
+     "supplier": "TENNENT HOMES 2019",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1500.0
+    },
+    {
+     "unit": 25,
+     "supplier": "ELITE SECURITY GROUP",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 1282.16
+    }
+   ]
+  },
+  "T-12": {
+   "risk": "R-07",
+   "kind": "file",
+   "file": "duplicates.csv",
+   "population": 204,
+   "size": 25,
+   "units": 25,
+   "transactions": 137,
+   "gbp": 2544445.34,
+   "sample_file": "outputs/samples/T-12.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "OAKLANDS SEN SCHOOL BERKSHIRE",
+     "transactions": 36,
+     "repeated": 0,
+     "gbp": 732148.2
+    },
+    {
+     "unit": 2,
+     "supplier": "OAKLANDS SEN SCHOOL BERKSHIRE",
+     "transactions": 13,
+     "repeated": 0,
+     "gbp": 266953.7
+    },
+    {
+     "unit": 3,
+     "supplier": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+     "transactions": 10,
+     "repeated": 0,
+     "gbp": 219881.6
+    },
+    {
+     "unit": 4,
+     "supplier": "SUKHBIR SINGH AND HARVINDER SINGH T A CALCOT SERVICES FOR CHILDREN CSFC",
+     "transactions": 6,
+     "repeated": 0,
+     "gbp": 112612.5
+    },
+    {
+     "unit": 5,
+     "supplier": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 98133.99
+    },
+    {
+     "unit": 6,
+     "supplier": "HUCKLEBERRY HOUSE",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 92756.25
+    },
+    {
+     "unit": 7,
+     "supplier": "PARADIGM CARE SERVICES",
+     "transactions": 4,
+     "repeated": 0,
+     "gbp": 68000.0
+    },
+    {
+     "unit": 8,
+     "supplier": "CARE SERVICES TO YOU",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 71969.31
+    },
+    {
+     "unit": 9,
+     "supplier": "CARE SERVICES TO YOU",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 71969.31
+    },
+    {
+     "unit": 10,
+     "supplier": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 69630.0
+    },
+    {
+     "unit": 11,
+     "supplier": "AMEGREEN CHILDRENS SERVICES",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 68862.16
+    },
+    {
+     "unit": 12,
+     "supplier": "AMEGREEN CHILDRENS SERVICES",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 68862.16
+    },
+    {
+     "unit": 13,
+     "supplier": "AMEGREEN CHILDRENS SERVICES",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 66640.8
+    },
+    {
+     "unit": 14,
+     "supplier": "AMEGREEN CHILDRENS SERVICES",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 66640.8
+    },
+    {
+     "unit": 15,
+     "supplier": "AFFINITY TRUST SUPPORT",
+     "transactions": 9,
+     "repeated": 0,
+     "gbp": 35640.0
+    },
+    {
+     "unit": 16,
+     "supplier": "LIAISE LODDON",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 44165.04
+    },
+    {
+     "unit": 17,
+     "supplier": "THE UNICORN SCHOOL",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 41313.0
+    },
+    {
+     "unit": 18,
+     "supplier": "BRIGHTER LIVING CARE",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 53469.92
+    },
+    {
+     "unit": 19,
+     "supplier": "BRIGHTER LIVING CARE",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 53192.16
+    },
+    {
+     "unit": 20,
+     "supplier": "FLOURISHING FAMILIES ASSESSMENT SERVICE",
+     "transactions": 5,
+     "repeated": 0,
+     "gbp": 32750.0
+    },
+    {
+     "unit": 21,
+     "supplier": "ACORN CARE EDUCATION",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 51067.4
+    },
+    {
+     "unit": 22,
+     "supplier": "AFFINITY TRUST SUPPORT",
+     "transactions": 3,
+     "repeated": 0,
+     "gbp": 36828.0
+    },
+    {
+     "unit": 23,
+     "supplier": "CARE SERVICES TO YOU",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 47979.54
+    },
+    {
+     "unit": 24,
+     "supplier": "CARE SERVICES TO YOU",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 47979.54
+    },
+    {
+     "unit": 25,
+     "supplier": "CHILTERN WAY ACADEMY",
+     "transactions": 12,
+     "repeated": 0,
+     "gbp": 24999.96
+    }
+   ]
+  },
+  "T-18": {
+   "risk": "R-07",
+   "kind": "records",
+   "population_text": "the council's unredacted listing of payments published as 'Redacted' in the spend window",
+   "size": 25
+  },
+  "T-13": {
+   "risk": "R-08",
+   "kind": "file",
+   "file": "off_contract.csv",
+   "population": 316,
+   "size": 15,
+   "units": 15,
+   "transactions": 1635,
+   "gbp": 11216254.74,
+   "sample_file": "outputs/samples/T-13.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "BUPA CARE SERVICES",
+     "transactions": 370,
+     "repeated": 0,
+     "gbp": 1874166.5
+    },
+    {
+     "unit": 2,
+     "supplier": "AFFINITY TRUST SUPPORT",
+     "transactions": 263,
+     "repeated": 0,
+     "gbp": 1098336.76
+    },
+    {
+     "unit": 3,
+     "supplier": "OAKLANDS SEN SCHOOL BERKSHIRE",
+     "transactions": 54,
+     "repeated": 0,
+     "gbp": 1026661.89
+    },
+    {
+     "unit": 4,
+     "supplier": "RUSKIN MILL TRUST",
+     "transactions": 9,
+     "repeated": 0,
+     "gbp": 795197.64
+    },
+    {
+     "unit": 5,
+     "supplier": "AMEGREEN CHILDRENS SERVICES",
+     "transactions": 27,
+     "repeated": 0,
+     "gbp": 750437.33
+    },
+    {
+     "unit": 6,
+     "supplier": "BRIGHTER LIVING CARE",
+     "transactions": 74,
+     "repeated": 0,
+     "gbp": 747183.47
+    },
+    {
+     "unit": 7,
+     "supplier": "SUKHBIR SINGH AND HARVINDER SINGH T A CALCOT SERVICES FOR CHILDREN CSFC",
+     "transactions": 26,
+     "repeated": 0,
+     "gbp": 639381.6
+    },
+    {
+     "unit": 8,
+     "supplier": "WE ARE THE CARE COMPANY",
+     "transactions": 349,
+     "repeated": 0,
+     "gbp": 589012.31
+    },
+    {
+     "unit": 9,
+     "supplier": "THE BETTER GROUP",
+     "transactions": 26,
+     "repeated": 0,
+     "gbp": 588490.08
+    },
+    {
+     "unit": 10,
+     "supplier": "PHOENIX CHILD CARE THE GRANGE SCHOOL",
+     "transactions": 25,
+     "repeated": 0,
+     "gbp": 567708.85
+    },
+    {
+     "unit": 11,
+     "supplier": "VOYAGE CARE",
+     "transactions": 80,
+     "repeated": 0,
+     "gbp": 554678.88
+    },
+    {
+     "unit": 12,
+     "supplier": "GCH ALDER T A HUNGERFORD CARE HOME",
+     "transactions": 104,
+     "repeated": 0,
+     "gbp": 545531.64
+    },
+    {
+     "unit": 13,
+     "supplier": "WEST BERKSHIRE MENCAP",
+     "transactions": 115,
+     "repeated": 0,
+     "gbp": 505286.21
+    },
+    {
+     "unit": 14,
+     "supplier": "PURLEY PARK TRUST",
+     "transactions": 94,
+     "repeated": 0,
+     "gbp": 471283.82
+    },
+    {
+     "unit": 15,
+     "supplier": "ACORN CARE EDUCATION",
+     "transactions": 19,
+     "repeated": 0,
+     "gbp": 462897.76
+    }
+   ]
+  },
+  "T-14": {
+   "risk": "R-09",
+   "kind": "records",
+   "population_text": "the council's waiver and exception register covering the spend window",
+   "size": 15
+  },
+  "T-15": {
+   "risk": "R-09",
+   "kind": "file",
+   "file": "off_contract.csv",
+   "population": 197,
+   "size": 15,
+   "units": 15,
+   "transactions": 200,
+   "gbp": 7789872.37,
+   "sample_file": "outputs/samples/T-15.csv",
+   "unit_list": [
+    {
+     "unit": 1,
+     "supplier": "VOLKERHIGHWAYS",
+     "transactions": 126,
+     "repeated": 0,
+     "gbp": 7377922.21
+    },
+    {
+     "unit": 2,
+     "supplier": "SCOTTISH SOUTHERN",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 110760.98
+    },
+    {
+     "unit": 3,
+     "supplier": "WSP UK",
+     "transactions": 24,
+     "repeated": 0,
+     "gbp": 73901.03
+    },
+    {
+     "unit": 4,
+     "supplier": "SOUTHERN COACH LINES",
+     "transactions": 16,
+     "repeated": 0,
+     "gbp": 55531.89
+    },
+    {
+     "unit": 5,
+     "supplier": "ACHIEVING FOR CHILDREN",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 34390.31
+    },
+    {
+     "unit": 6,
+     "supplier": "RACKLINE",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 25510.0
+    },
+    {
+     "unit": 7,
+     "supplier": "MARSTON HOLDINGS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 19746.0
+    },
+    {
+     "unit": 8,
+     "supplier": "KEYSTREAM GROUP",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 17545.0
+    },
+    {
+     "unit": 9,
+     "supplier": "ADAMS SUTHERLAND",
+     "transactions": 1,
+     "repeated": 0,
+     "gbp": 15350.0
+    },
+    {
+     "unit": 10,
+     "supplier": "CELADOR APARTMENTS",
+     "transactions": 5,
+     "repeated": 0,
+     "gbp": 13699.0
+    },
+    {
+     "unit": 11,
+     "supplier": "KENNET AVON GROUP",
+     "transactions": 7,
+     "repeated": 0,
+     "gbp": 11735.0
+    },
+    {
+     "unit": 12,
+     "supplier": "MR RIAZ SHEIKH",
+     "transactions": 4,
+     "repeated": 0,
+     "gbp": 9997.5
+    },
+    {
+     "unit": 13,
+     "supplier": "FUNTASTIC KIDS",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 9153.43
+    },
+    {
+     "unit": 14,
+     "supplier": "CHUBB FIRE SECURITY",
+     "transactions": 4,
+     "repeated": 0,
+     "gbp": 7870.02
+    },
+    {
+     "unit": 15,
+     "supplier": "FIELDWORK REST PLAY",
+     "transactions": 2,
+     "repeated": 0,
+     "gbp": 6760.0
+    }
+   ]
+  }
+ },
+ "counts": {
+  "risks_in_scope": 9,
+  "risks_rejected": 0,
+  "controls": 11,
+  "tests": 18,
+  "tests_sampled_from_data": 16,
+  "tests_sampled_on_site": 2,
+  "sample_units": 227,
+  "transactions": 3659,
+  "transactions_gbp": 61889210.69,
+  "pbc_items": 28
+ },
+ "coverage": {
+  "rules_total": 80,
+  "cited_by_risk": 24,
+  "cited_by_control": 29,
+  "cited_by_test": 33,
+  "not_tested": 46,
+  "accounted": 80
+ },
+ "filled_from_analytics": [
+  {
+   "where": "memo.sections[1]",
+   "path": "$.window.start",
+   "value": "2026-05-01",
+   "printed": "2026-05-01"
+  },
+  {
+   "where": "memo.sections[1]",
+   "path": "$.window.end",
+   "value": "2026-07-31",
+   "printed": "2026-07-31"
+  },
+  {
+   "where": "memo.sections[3]",
+   "path": "$.tests.threshold_clustering.counts.total",
+   "value": 368,
+   "printed": "368"
+  },
+  {
+   "where": "memo.sections[3]",
+   "path": "$.tests.split_purchases.counts.total",
+   "value": 508,
+   "printed": "508"
+  },
+  {
+   "where": "memo.sections[3]",
+   "path": "$.tests.split_purchases.parameters.window_days",
+   "value": 30,
+   "printed": "30"
+  },
+  {
+   "where": "memo.sections[3]",
+   "path": "$.tests.off_contract.counts.total",
+   "value": 637,
+   "printed": "637"
+  },
+  {
+   "where": "memo.sections[3]",
+   "path": "$.tests.duplicates.different_dates.items",
+   "value": 256,
+   "printed": "256"
+  },
+  {
+   "where": "memo.sections[3]",
+   "path": "$.tests.duplicates.parameters.window_days",
+   "value": 7,
+   "printed": "7"
+  },
+  {
+   "where": "memo.sections[3]",
+   "path": "$.tests.expired_notice_spend.counts.total",
+   "value": 7,
+   "printed": "7"
+  },
+  {
+   "where": "memo.sections[3]",
+   "path": "$.tests.spend_vs_award.counts.total",
+   "value": 7,
+   "printed": "7"
+  },
+  {
+   "where": "memo.sections[4]",
+   "path": "$.cleaning.exclusions[0].rows",
+   "value": 2015,
+   "printed": "2,015"
+  },
+  {
+   "where": "memo.sections[4]",
+   "path": "$.cleaning.exclusions[0].gbp",
+   "value": 2746746.71,
+   "printed": "£2,746,747"
+  },
+  {
+   "where": "T-18",
+   "path": "$.cleaning.exclusions[0].rows",
+   "value": 2015,
+   "printed": "2,015"
+  }
+ ],
+ "filled_from_pack": [
+  {
+   "where": "memo.sections[2]",
+   "path": "$pack.counts.tests",
+   "value": 18,
+   "printed": "18"
+  },
+  {
+   "where": "memo.sections[2]",
+   "path": "$pack.counts.transactions",
+   "value": 3659,
+   "printed": "3,659"
+  },
+  {
+   "where": "memo.sections[2]",
+   "path": "$pack.counts.transactions_gbp",
+   "value": 61889210.69,
+   "printed": "£61,889,211"
+  }
+ ]
+}

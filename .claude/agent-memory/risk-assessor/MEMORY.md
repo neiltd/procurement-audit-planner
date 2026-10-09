@@ -1,0 +1,1 @@
+- [Placeholder paths](placeholder_paths.md) — tier amounts via $.thresholds.tiers[n].value; what counts as a likelihood signal

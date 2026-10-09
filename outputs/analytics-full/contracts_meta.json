@@ -1,0 +1,36 @@
+{
+  "present": true,
+  "sha256": "9d0a53c092a5274f44490b428f9ff400ac8cb889df962165720f8a1d0ed42648",
+  "raw_rows": 150,
+  "kept": 141,
+  "dropped": 9,
+  "kept_by_org_name_as_written": {
+    "West Berkshire Council": 115,
+    "West Berkshire": 20,
+    "WEST BERKSHIRE COUNCIL": 6
+  },
+  "dropped_org_names": {
+    "Ministry of Defence": 5,
+    "Westworks Procurement Ltd": 1,
+    "SOUTHAMPTON CITY COUNCIL": 1,
+    "CITY OF BRADFORD METROPOLITAN DISTRICT COUNCIL": 1,
+    "Health Education England": 1
+  },
+  "supplier_rows": 210,
+  "supplier_rows_merged_by_ch_number_or_name": 0,
+  "notices_with_empty_supplier": [],
+  "notices_with_supplier": 141,
+  "live_in_window": 61,
+  "zero_award_value_notices": 7,
+  "window_start_used": "2026-05-01",
+  "kept_by_year": {
+    "2021": 7,
+    "2022": 10,
+    "2023": 39,
+    "2024": 52,
+    "2025": 28,
+    "2026": 5
+  },
+  "warnings": [],
+  "join_note": "Spend data has no Companies House numbers: the spend-to-notice join is by normalised supplier name only. CH numbers are used only to merge duplicate supplier blocks within a notice."
+}

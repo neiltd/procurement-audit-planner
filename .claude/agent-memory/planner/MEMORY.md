@@ -1,0 +1,2 @@
+- [Prose figure traps](prose-figure-traps.md) — "S.151" trips W-FIGURE; supplier/group units pull all their payments
+- [Citation path brackets](citation-path-brackets.md) — [metric:] citations reject list indexes; use {{...}} placeholders

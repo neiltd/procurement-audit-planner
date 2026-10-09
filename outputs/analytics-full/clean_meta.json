@@ -1,0 +1,150 @@
+{
+  "spend_files": [
+    {
+      "file": "Over500_2026_P02_-_published.xlsx",
+      "sha256": "f611346f258825b84924310c2d42edce4a4aec3d3832054b340f4ac2125301a6",
+      "header_row": 1,
+      "rows_read": 2892,
+      "blank_rows_skipped": 0,
+      "text_dates_parsed_mdy": 0,
+      "rows_kept": 2280,
+      "rows_excluded": 612
+    },
+    {
+      "file": "Over500_2026_P03_-_published.xlsx",
+      "sha256": "b7359a8e5cb9ea55bf3d47112f185167038b5ee64af8db9be02a7f5ea869ec76",
+      "header_row": 2,
+      "rows_read": 3547,
+      "blank_rows_skipped": 0,
+      "text_dates_parsed_mdy": 0,
+      "rows_kept": 2711,
+      "rows_excluded": 836
+    },
+    {
+      "file": "Over500_2026_P04_-_published.xlsx",
+      "sha256": "e465900d00a8e20ac767d6218827a48c01ab6ad911e5051a34c18979b7da0612",
+      "header_row": 2,
+      "rows_read": 4168,
+      "blank_rows_skipped": 0,
+      "text_dates_parsed_mdy": 0,
+      "rows_kept": 3533,
+      "rows_excluded": 635
+    }
+  ],
+  "rows_read": 10607,
+  "gbp_read": 80427254.26,
+  "exclusions": [
+    {
+      "reason": "redacted",
+      "rows": 2015,
+      "gbp": 2746746.71,
+      "suppliers": 1,
+      "pattern": "Supplier name == 'Redacted' after strip"
+    },
+    {
+      "reason": "pension_statutory",
+      "rows": 15,
+      "gbp": 9245179.4,
+      "suppliers": 2,
+      "pattern": "\\bLGPS\\b|PENSION|DEFICIT CONTRIBUTION|\\bAVC\\b on Narrative (AVC = pension additional voluntary contributions)"
+    },
+    {
+      "reason": "public_body",
+      "rows": 53,
+      "gbp": 2312688.07,
+      "suppliers": 21,
+      "pattern": "name: \\bCOUNCIL\\b|\\bCNCL\\b|\\bROYAL BOROUGH OF\\b|\\bNHS\\b|\\bHMRC\\b|\\bHM REVENUE\\b|\\bPOLICE\\b|\\bFIRE AND RESCUE\\b|\\bDEPARTMENT FOR\\b|\\bDEPT FOR\\b|\\bMINISTRY OF\\b|\\bHOME OFFICE\\b|\\bCABINET OFFICE\\b|\\bHMCTS\\b|\\bOFSTED\\b | narrative: ^Joint Arrangements \\(with Other Local Authorities or NHS\\)|^Payments to Other Local Authorities|^Payments to NHS"
+    }
+  ],
+  "exclusions_full_list": "outputs/analytics-full/exclusions.csv",
+  "rows_analysed": 8524,
+  "gbp_analysed": 66122640.08,
+  "negative_or_zero_rows_analysed": 0,
+  "notes": [
+    "Grants kept (Rules 1.6.2 treat a grant as a contract).",
+    "SCHOOL/ACADEMY/NURSERY names kept: mostly independent SEN schools, early-years and care providers."
+  ],
+  "tags": {
+    "map": {
+      "agency_staff": {
+        "narrative_in": [
+          "Agency & Temporary Staff"
+        ]
+      },
+      "grant": {
+        "narrative_in": [
+          "Grants"
+        ],
+        "note": "Rules 1.6.2 treat a grant as a contract, so grants stay in the population."
+      },
+      "premises": {
+        "expenditure_category_in": [
+          "Premises"
+        ]
+      },
+      "care_education_placement": {
+        "narrative_in_any_service": [
+          "Allowances for provision care",
+          "Adult Placement Allowances",
+          "Direct Payment",
+          "Payments to Carers"
+        ],
+        "narrative_in_when_service_in": {
+          "narratives": [
+            "Private Contractors",
+            "Private Contractors Additional Cost",
+            "Payment to contractor",
+            "Other agencies",
+            "Voluntary Associations"
+          ],
+          "services": [
+            "Adult Social Care",
+            "Adult Social Care - Transformation Projects",
+            "Children's Social Care",
+            "Education & SEND",
+            "Education (DSG Funded) & Other Education Grants",
+            "Executive Director People - Children's Services",
+            "Executive Director People - Adult Social Care & Public Health"
+          ]
+        },
+        "note": "Care/placement allowances anywhere, plus contractor, agency or voluntary-sector narratives under a social care, SEND or education Service (placements, packages, early-years and SEN provider payments)."
+      },
+      "general_procurement": {
+        "default": true,
+        "note": "Everything else, e.g. Environment contractors, Transport Hire (incl. SEND home-to-school transport), IT, professional fees, minor works."
+      }
+    },
+    "priority": [
+      "agency_staff",
+      "grant",
+      "premises",
+      "care_education_placement",
+      "general_procurement"
+    ],
+    "combinations_file": "outputs/analytics-full/tag_combinations.csv",
+    "totals": {
+      "agency_staff": {
+        "rows": 24,
+        "gbp": 1285541.24
+      },
+      "grant": {
+        "rows": 339,
+        "gbp": 6033599.82
+      },
+      "premises": {
+        "rows": 526,
+        "gbp": 1126526.88
+      },
+      "care_education_placement": {
+        "rows": 5925,
+        "gbp": 32037274.62
+      },
+      "general_procurement": {
+        "rows": 1710,
+        "gbp": 25639697.52
+      }
+    }
+  },
+  "date_min": "2026-05-01",
+  "date_max": "2026-07-31"
+}
