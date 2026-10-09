@@ -120,25 +120,24 @@ Numbers below are read from the files in `outputs/`.
 
 **History** (`history.json`): 20 audits (16 completed, 3 follow-ups, 1 advisory), 0 agreed actions listed in any paper, 23 risk themes, 12 discrepancies, 7 gaps. The council's scoring method was found in the Risk Management Strategy 2024-27. The Strategic Risk Register is exempt and not public; recorded as a gap.
 
-**Register** (`risk-register.md`, revision 2): 9 risks rated, all in scope after the gate. R-07 (repeat payments of the same amount within a week) scores 15, Extreme. The other eight score 8 to 12, Medium - High. Decisions in `auditor-comments.md`: 8 Approve, R-09 Change (likelihood 2 to 3, recorded as an auditor override at revision 1), and a GENERAL row rejecting R-10 (grants), which was not among the nine rated risks. Gate line: `ready: every rated risk has a decision, applied in revision 2.`
+**Register** (`risk-register.md`, revision 3): 9 risks rated, all in scope. R-07 (repeat payments of the same amount within a week) scores 15, Extreme. R-09 (waivers) scores 6, Moderate. The other seven score 8 to 12, Medium - High. Decisions in `auditor-comments.md` (2026-10-09): 7 Approve, R-04 Change (population narrowed to suppliers outside the placement tag, so placements are tested once under R-08 while grants, premises and agency staff stay in R-04), R-09 Change (likelihood 3 to 2), and a GENERAL row that rejects a separate grants risk (R-10) and puts schools' own purchasing out of scope. Gate line: `GATE OPEN on register revision 3`.
 
-**Pack** (`pack-figures.json`, v3): 9 risks, 11 controls, 18 tests (16 drawn from the flagged lists, 2 sampled on site), 227 sample units, 3,659 transactions worth £61,889,211, 28 PBC items. Rule coverage: 80 rules, 24 cited by a risk, 29 by a control, 33 by a test, 46 listed as not tested with a reason; 80 of 80 accounted for.
+The gate ran twice. Revision 1 and 2 applied the first decisions (2026-10-08). The first team run then raised two points for the auditor: #5, whether the Limited Assurance opinion on Direct Payments (A-16) should raise R-08's likelihood to 4, and #8, whether schools' purchasing is in scope. The auditor answered both in revision 3 (R-08 stays at 3; schools out of scope), together with the R-04 and R-09 changes, and the team ran again on revision 3. The first run's `challenges.md` and `review.md` are in the first commit of this repo.
 
-**Challenges** (`challenges.md`): 10 challenges across two rounds (8 in round 1, 2 in round 2). 8 accepted by the planner and verified in v2 or v3; 2 marked for the auditor:
+**Pack** (`pack-figures.json`, v3, register revision 3): 9 risks, 11 controls, 21 tests (19 drawn from the flagged lists, 2 sampled on site), 280 sample units, 4,013 transactions worth £64,388,556, 31 PBC items. Rule coverage: 80 rules, 24 cited by a risk, 29 by a control, 42 by a test, 38 listed as not tested with a reason; 80 of 80 accounted for.
 
-- #5 (rating, R-08): whether the Limited Assurance opinion on Direct Payments (A-16) is a repeat finding on R-08's theme, which would raise likelihood from 3 to 4.
-- #8 (scope, GENERAL): whether purchasing by schools is in scope, given two school audits with Weak (A-11) and Limited (A-12) opinions and no approved risk covering it.
+**Challenges** (`challenges.md`, second team run): 10 challenges across two rounds (8 in round 1, 2 in round 2). 9 accepted by the planner and resolved; 1 marked for the auditor: #1, whether R-02's tests (T-04, T-05) keep 15 sample units each. The auditor kept 15 in the sign-off comment.
 
-**QA** (`review.md`, pack v3, checked 2026-10-08):
+**QA** (`review.md`, pack v3, checked 2026-10-09):
 
 | Check | Result | Summary |
 |---|---|---|
 | check_quotes | PASS | verifier: PASS: 80 rules, 43 excluded, 34 notes, 5 parameters; every quote found on its page; 32 register excerpt(s) checked |
-| check_numbers | PASS | 331 figure(s) checked in 3 document(s) |
-| check_trace | PASS | 80 rules, 9 approved risk(s), 9 High, 10 challenge(s) |
-| check_samples | PASS | 3659 sampled row(s) in 16 file(s); 2502 distinct transaction(s) traced to the workbooks |
+| check_numbers | PASS | 402 figure(s) checked in 3 document(s) |
+| check_trace | PASS | 80 rules, 9 approved risk(s), 8 High, 10 challenge(s) |
+| check_samples | PASS | 4013 sampled row(s) in 19 file(s); 2713 distinct transaction(s) traced to the workbooks |
 
-Version history: v1 FAIL check_trace, v2 FAIL check_trace, v3 PASS. Verdict: READY FOR SIGN-OFF. Re-running `run_checks.py` while writing this README gave the same table.
+Version history: v1 PASS, v2 FAIL check_trace, v3 FAIL check_trace (open challenge rows held while the challenger worked), v3 final PASS. Verdict: READY FOR SIGN-OFF. Signed off by Neil Doungsaeng on 2026-10-09.
 
 ## Guide completion checklist
 
@@ -161,16 +160,16 @@ Version history: v1 FAIL check_trace, v2 FAIL check_trace, v3 PASS. Verdict: REA
 | 3.6 | Build the risk-assessor sub-agent | `.claude/agents/risk-assessor.md` |
 | 3.7 | Run the risk-assessor and review the register | `outputs/risk-ratings.json`, `outputs/risk-register.md`, `outputs/auditor-comments.md`, `outputs/risk-register.state.json`. The supplier-name check was done in chat and left no file. |
 | 4.1 | Open the decision template | `outputs/auditor-comments.md`: one row per risk (R-01 to R-09) plus GENERAL |
-| 4.2 | Record your decisions | `outputs/auditor-comments.md`: every Decision cell filled, dated 2026-10-08 |
-| 4.3 | Revise the register | `outputs/risk-register.state.json` `overrides`: R-09 likelihood 2 → 3 at revision 1; `risk-register.md` R-09 entry shows "Auditor override (revision 1)" |
-| 5.1 | Close the gate | `outputs/risk-register.md` header "Revision 2" listing R-02 to R-08 approved; gate line `ready` |
+| 4.2 | Record your decisions | `outputs/auditor-comments.md`: every Decision cell filled with the auditor's name and reason, dated 2026-10-09 (first round 2026-10-08) |
+| 4.3 | Revise the register | `outputs/risk-register.md` revision 3 lists each change; R-09 shows "Auditor override (revision 3)": likelihood 3 → 2; R-04 population narrowed |
+| 5.1 | Close the gate | `build_pack.py --gate` prints `GATE OPEN on register revision 3`, 9 risks in scope |
 | 5.2 | Enable agent teams | `.claude/settings.json` |
 | 5.3 | Build the audit-program skill | `.claude/skills/audit-program/SKILL.md`, `build_pack.py`, `tests/test_build_pack.py` |
 | 5.4 | Build the planner | `.claude/agents/planner.md` |
 | 5.5 | Build the challenger | `.claude/agents/challenger.md` |
 | 5.6 | Build the qa-reviewer and its checks | `.claude/agents/qa-reviewer.md`; `scripts/checks/run_checks.py`, `check_quotes.py`, `check_numbers.py`, `check_trace.py`, `check_samples.py`, `qa_common.py`, `tests/test_checks.py` |
-| 5.7 | Run the team | `outputs/audit-plan.json`, `planning-memo.md`, `risk-control-matrix.md`, `audit-program.md`, `samples/` (16 files), `pack-figures.json`, `challenges.md`, `review.md`; `.claude/agent-memory/planner/`, `.claude/agent-memory/challenger/` |
-| 5.8 | Sign off | **Pending.** The sign-off block at the end of `outputs/review.md` (Auditor, Date, Decision, Comments) is still blank. |
+| 5.7 | Run the team | `outputs/audit-plan.json`, `planning-memo.md`, `risk-control-matrix.md`, `audit-program.md`, `samples/` (19 files), `pack-figures.json`, `challenges.md`, `review.md`; `.claude/agent-memory/planner/`, `.claude/agent-memory/challenger/` |
+| 5.8 | Sign off | `outputs/review.md` sign-off block: Neil Doungsaeng, 2026-10-09, Sign off, with the answer to challenge #1 |
 
 ## How to run
 
@@ -208,7 +207,7 @@ Checks you can run by hand at any time:
 
 ## Auditor judgment (human gate)
 
-> **[Neil — to write]:** why I approved R-01 to R-08 as rated, why I changed R-09 (likelihood 2 → 3), and why I rejected R-10 (grants) in the GENERAL row.
+> **[Neil — to write]:** why I approved R-01 to R-03 and R-05 to R-08, why I changed R-04 and R-09, and why I rejected R-10 (grants) as a separate risk.
 
 > **[Neil — to write]:** my decision on challenge #5 (is the Direct Payments Limited Assurance opinion, A-16, a repeat finding on R-08's theme that raises likelihood to 4?).
 

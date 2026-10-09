@@ -30,7 +30,11 @@
         "used": "Table 4: only Extreme (15-25) is added to the Corporate Risk Register",
         "marked": "Figure 4: score 9 or above goes to the Corporate Risk Register",
         "reason": "Table 4 is the band table the score is read against and carries the escalation for each band.",
-        "mark": {"min_score": 9, "max_score": 14, "text": "would go to the Corporate Risk Register under Figure 4 (score 9 or above)"}
+        "mark": {
+          "min_score": 9,
+          "max_score": 14,
+          "text": "would go to the Corporate Risk Register under Figure 4 (score 9 or above)"
+        }
       }
     ],
     "not_affected": [
@@ -92,18 +96,18 @@
     {
       "id": "R-04",
       "title": "Suppliers above the publication threshold with no live Contracts Finder notice",
-      "description": "{{$.tests.off_contract.counts.total}} of {{$.tests.off_contract.population.suppliers_tested}} suppliers whose annualised estimate reaches {{$.thresholds.publication_threshold.value|gbp}} have no live notice matched by exact normalised name ({{$.tests.off_contract.counts.by_tag.general_procurement}} in general procurement); {{$.tests.off_contract.with_candidate_name}} more have a near-miss candidate name listed separately. Contracts at this level need a published notice [rule:CPR-66] and quotes via the Portal [rule:CPR-65]. The notice export starts in 2021 and matching is by name only, so 'no notice found' is a prompt to request contract evidence, not evidence that none exists.",
+      "description": "Outside care and education placements, which R-08 covers, suppliers whose annualised estimate reaches {{$.thresholds.publication_threshold.value|gbp}} and have no live notice matched by exact normalised name are: {{$.tests.off_contract.counts.by_tag.general_procurement}} in general procurement ({{$.tests.off_contract.gbp.by_tag.general_procurement|gbp}} in the window), {{$.tests.off_contract.counts.by_tag.grant}} grant recipients ({{$.tests.off_contract.gbp.by_tag.grant|gbp}}), {{$.tests.off_contract.counts.by_tag.premises}} premises suppliers ({{$.tests.off_contract.gbp.by_tag.premises|gbp}}) and {{$.tests.off_contract.counts.by_tag.agency_staff}} agency staff supplier ({{$.tests.off_contract.gbp.by_tag.agency_staff|gbp}}); {{$.tests.off_contract.with_candidate_name}} suppliers across the full list have a near-miss candidate name listed separately. Grants stay in this risk: the auditor's scope decision keeps them here to be tested. Contracts at this level need a published notice [rule:CPR-66] and quotes via the Portal [rule:CPR-65]. The notice export starts in 2021 and matching is by name only, so 'no notice found' is a prompt to request contract evidence, not evidence that none exists.",
       "likelihood": {
         "score": 3,
-        "justification": "L3: one test flags suppliers above the publication threshold with no live notice [metric:$.tests.off_contract.counts.total], including general procurement suppliers that the placement and grant tags do not explain [metric:$.tests.off_contract.counts.by_tag.general_procurement]. The Reasonable Assurance opinion on Contract Letting argues the other way [history:A-01]."
+        "justification": "L3: one test flags suppliers above the publication threshold with no live notice outside the placement tag, in general procurement [metric:$.tests.off_contract.counts.by_tag.general_procurement], grants [metric:$.tests.off_contract.counts.by_tag.grant], premises [metric:$.tests.off_contract.counts.by_tag.premises] and agency staff [metric:$.tests.off_contract.counts.by_tag.agency_staff]; analytics.json does not explain them away. Narrowing the population to these tags leaves the same single test, so the rubric row does not move. The Reasonable Assurance opinion on Contract Letting argues the other way [history:A-01]."
       },
       "impact": {
         "score": 3,
         "criterion": "Compliance (litigation, regulatory, contract)",
-        "justification": "C3: the test covers suppliers from the publication threshold up, the tier where a notice on the CDP and three Portal quotes are required [rule:CPR-66] [rule:CPR-65]; row C4 would need the Threshold-tied rules, which were not tested."
+        "justification": "C3: the narrowed population still sits from the publication threshold up, the tier where a notice on the CDP and three Portal quotes are required [rule:CPR-66] [rule:CPR-65], across general procurement, grant, premises and agency staff suppliers [metric:$.tests.off_contract.gbp.by_tag.general_procurement] [metric:$.tests.off_contract.gbp.by_tag.grant]; row C4 would need the Threshold-tied rules, which were not tested, so the narrowing does not move the rubric row."
       },
       "repeat_uplift": null,
-      "proposed_focus": "Start with the general procurement suppliers in the list and the near-miss candidates; for each, request the contract, its award notice [rule:CPR-66] and its entry on the contracts register [rule:CPR-07]. Do not question suppliers below the publication threshold."
+      "proposed_focus": "Test the no-live-notice suppliers outside the care and education placement tag: general procurement first, then grants, premises and agency staff, plus the near-miss candidates. For each, request the contract or grant agreement, its award notice [rule:CPR-66] and its entry on the contracts register [rule:CPR-07]. Leave placement suppliers to R-08. Do not question suppliers below the publication threshold."
     },
     {
       "id": "R-05",
@@ -175,8 +179,8 @@
       "title": "Waivers and exceptions to the Rules not approved or recorded in advance",
       "description": "Competition can be waived above the quote threshold only on urgency or Executive Director discretion with written reasons [rule:CPR-21] [rule:CPR-22], approved by the Monitoring Officer or S151 Officer [rule:CPR-23] and fully documented [rule:CPR-28]. No spend test can see a waiver; the evidence sits in council records.",
       "likelihood": {
-        "score": 3,
-        "justification": "Auditor override (decision R-09): the auditor set likelihood 3. The rubric reading was L2, since the evidence is council records only [rule:CPR-23] and the last audit on the theme, Contract Letting, was Reasonable Assurance [history:A-01]."
+        "score": 2,
+        "justification": "L2: the evidence is council records only, since no spend test can see a waiver [rule:CPR-23] [rule:CPR-28], and the last audit on the theme, Contract Letting, was Reasonable Assurance [history:A-01]. Set by the auditor (decision R-09): high stakes bear on impact, not likelihood."
       },
       "impact": {
         "score": 3,
@@ -187,5 +191,28 @@
       "proposed_focus": "Request the waiver and exception register and test a sample for advance approval and written reasons [rule:CPR-24] [rule:CPR-30]; cross-check against suppliers flagged in the off-contract list [rule:CPR-66]."
     }
   ],
-  "revision": {"number": 2, "changes": []}
+  "revision": {
+    "number": 3,
+    "changes": [
+      {
+        "risk": "R-04",
+        "fields": [
+          "description",
+          "likelihood",
+          "impact",
+          "proposed_focus"
+        ],
+        "decision": "R-04",
+        "note": "Narrowed to no-live-notice suppliers outside the care_education_placement tag (R-08 covers placements); grants, premises and agency staff stay in and are cited by tag. Scores unchanged: L3 and C3 rows do not move."
+      },
+      {
+        "risk": "R-09",
+        "fields": [
+          "likelihood"
+        ],
+        "decision": "R-09",
+        "note": "Likelihood 3 to 2 as the auditor asked; justification cites the L2 row (council records only, last audit Reasonable)."
+      }
+    ]
+  }
 }

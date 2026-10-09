@@ -1,16 +1,16 @@
 # Auditor decisions: risk register
 
-Register revision 2, built 2026-10-08. Read `outputs/risk-register.md`, then fill in the Decision and Comment cells below. Decision is one of **Approve**, **Reject** or **Change**. For Change, say in the Comment what to change (for example "likelihood 4: the split groups are not explained" or "narrow the focus to agency staff"). Use the GENERAL row for scope comments or a risk to add. Leave the other columns as they are; the builder rewrites them and keeps your decisions.
+Register revision 3, built 2026-10-09. Read `outputs/risk-register.md`, then fill in the Decision and Comment cells below. Decision is one of **Approve**, **Reject** or **Change**. For Change, say in the Comment what to change (for example "likelihood 4: the split groups are not explained" or "narrow the focus to agency staff"). Use the GENERAL row for scope comments or a risk to add. Leave the other columns as they are; the builder rewrites them and keeps your decisions.
 
 | Risk | Title | L | I | Score | Band | Decision | Comment |
 |---|---|---|---|---|---|---|---|
-| R-01 | Spend structured to stay just below the quote threshold | 4 | 3 | 12 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-08] |
-| R-02 | Spend kept at or just below the one-quote level | 4 | 2 | 8 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-08] |
-| R-03 | Payment groups crossing the Key Decision and Executive approval levels | 3 | 4 | 12 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-08] |
-| R-04 | Suppliers above the publication threshold with no live Contracts Finder notice | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-08] |
-| R-05 | Payments to suppliers whose every matched notice ended before the spend window | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-08] |
-| R-06 | Annualised spend above the awarded contract value without a recorded variation | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-08] |
-| R-07 | Repeat payments of the same amount to the same supplier within a week | 3 | 5 | 15 | Extreme (Red) | Approve | [2026-10-08] |
-| R-08 | High-value care and education placements with no published contract notice | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-08] |
-| R-09 | Waivers and exceptions to the Rules not approved or recorded in advance | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | Change | [2026-10-08] likelihood 3: awards above £500,000 are rare but carry the highest stakes. |
-| GENERAL | Scope, or a risk to add | | | | | Approve | [2026-10-08] R-10 (not in the register) rejected: grants will be covered by a separate review. |
+| R-01 | Spend structured to stay just below the quote threshold | 4 | 3 | 12 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-09, Neil Doungsaeng] |
+| R-02 | Spend kept at or just below the one-quote level | 4 | 2 | 8 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-09, Neil Doungsaeng] Two separate tests flag it; score 8 already makes it the lowest priority, so sample fewer cases rather than lower the likelihood. |
+| R-03 | Payment groups crossing the Key Decision and Executive approval levels | 3 | 4 | 12 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-09, Neil Doungsaeng] |
+| R-04 | Suppliers above the publication threshold with no live Contracts Finder notice | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | Change | [2026-10-09, Neil Doungsaeng] Keep all suppliers with no live notice in R-04 except care and education placements, which R-08 already covers. Grants, premises and agency staff stay in R-04 so they are still tested. |
+| R-05 | Payments to suppliers whose every matched notice ended before the spend window | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-09, Neil Doungsaeng] |
+| R-06 | Annualised spend above the awarded contract value without a recorded variation | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-09, Neil Doungsaeng] |
+| R-07 | Repeat payments of the same amount to the same supplier within a week | 3 | 5 | 15 | Extreme (Red) | Approve | [2026-10-09, Neil Doungsaeng] |
+| R-08 | High-value care and education placements with no published contract notice | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | Approve | [2026-10-09, Neil Doungsaeng] Keep likelihood 3 (challenge #5). Only one test supports it, the Reasonable Assurance opinion argues the other way, and placements have legitimate exceptions, so a missing notice is not "almost certain". |
+| R-09 | Waivers and exceptions to the Rules not approved or recorded in advance | 2 | 3 | 6 | Moderate | Change | [2026-10-09, Neil Doungsaeng] Likelihood 2, keep in scope. The spend data cannot show a waiver, so there is no evidence it is likely; high stakes affect impact, not likelihood. |
+| GENERAL | Scope, or a risk to add | | | | | Approve | [2026-10-09, Neil Doungsaeng] R-10 (grants) rejected as a separate risk because grants stay inside R-04; the Rules treat a grant as a contract, so they must not be excluded. Schools out of scope (challenge #8): this audit covers council purchasing; the school spend in the data is mainly council-funded placements already covered by R-08, and schools' own purchasing stays with their separate school audits. |

@@ -1,17 +1,20 @@
-# Risk register: procurement audit planning (revision 2)
+# Risk register: procurement audit planning (revision 3)
 
-Built 2026-10-08 by `.claude/skills/risk-assessment/build_register.py` from `outputs/risk-ratings.json`. Every figure is filled from `outputs/analytics.json`; every citation resolves to rules.json, analytics.json or history.json. These are risk indicators to investigate, not findings of wrongdoing.
+Built 2026-10-09 by `.claude/skills/risk-assessment/build_register.py` from `outputs/risk-ratings.json`. Every figure is filled from `outputs/analytics.json`; every citation resolves to rules.json, analytics.json or history.json. These are risk indicators to investigate, not findings of wrongdoing.
 
-## Revision 2
+## Revision 3
 
 - Responds to the decisions in `outputs/auditor-comments.md`.
+- GENERAL approved.
+- R-01 approved.
 - R-02 approved.
 - R-03 approved.
-- R-04 approved.
 - R-05 approved.
 - R-06 approved.
 - R-07 approved.
 - R-08 approved.
+- R-04: description changed, likelihood changed, impact changed, proposed_focus changed, as asked ("[2026-10-09, Neil Doungsaeng] Keep all suppliers with no live notice in R-04 except care and education placements, which R-08 already covers. Grants, premises and agency staff stay in R-04 so they are still tested."). Narrowed to no-live-notice suppliers outside the care_education_placement tag (R-08 covers placements); grants, premises and agency staff stay in and are cited by tag. Scores unchanged: L3 and C3 rows do not move.
+- R-09: likelihood 3 → 2, as asked ("[2026-10-09, Neil Doungsaeng] Likelihood 2, keep in scope. The spend data cannot show a waiver, so there is no evidence it is likely; high stakes affect impact, not likelihood."). Likelihood 3 to 2 as the auditor asked; justification cites the L2 row (council records only, last audit Reasonable).
 
 ## Scoring method
 
@@ -48,12 +51,12 @@ Where the council's papers disagree with themselves, the register uses one side 
 | R-01 | Spend structured to stay just below the quote threshold | 4 | 3 | 12 | Medium - High (Amber) [matrix: High] | approved |
 | R-02 | Spend kept at or just below the one-quote level | 4 | 2 | 8 | Medium - High (Amber) [matrix: High] | approved |
 | R-03 | Payment groups crossing the Key Decision and Executive approval levels | 3 | 4 | 12 | Medium - High (Amber) [matrix: High] | approved |
-| R-04 | Suppliers above the publication threshold with no live Contracts Finder notice | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | approved |
+| R-04 | Suppliers above the publication threshold with no live Contracts Finder notice | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | changed as asked (rev 3) |
 | R-05 | Payments to suppliers whose every matched notice ended before the spend window | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | approved |
 | R-06 | Annualised spend above the awarded contract value without a recorded variation | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | approved |
 | R-07 | Repeat payments of the same amount to the same supplier within a week | 3 | 5 | 15 | Extreme (Red) | approved |
 | R-08 | High-value care and education placements with no published contract notice | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | approved |
-| R-09 | Waivers and exceptions to the Rules not approved or recorded in advance | 3 | 3 | 9 | Medium - High (Amber) [matrix: High] | changed as asked (rev 2) |
+| R-09 | Waivers and exceptions to the Rules not approved or recorded in advance | 2 | 3 | 6 | Moderate | changed as asked (rev 3) |
 
 ## Risks
 
@@ -131,11 +134,11 @@ Where the council's papers disagree with themselves, the register uses one side 
 
 ### R-04 Suppliers above the publication threshold with no live Contracts Finder notice
 
-637 of 672 suppliers whose annualised estimate reaches £25,000 have no live notice matched by exact normalised name (169 in general procurement); 16 more have a near-miss candidate name listed separately. Contracts at this level need a published notice [CPR-66] and quotes via the Portal [CPR-65]. The notice export starts in 2021 and matching is by name only, so 'no notice found' is a prompt to request contract evidence, not evidence that none exists.
+Outside care and education placements, which R-08 covers, suppliers whose annualised estimate reaches £25,000 and have no live notice matched by exact normalised name are: 169 in general procurement (£22,832,317 in the window), 124 grant recipients (£5,876,514), 27 premises suppliers (£957,959) and 1 agency staff supplier (£1,275,552); 16 suppliers across the full list have a near-miss candidate name listed separately. Grants stay in this risk: the auditor's scope decision keeps them here to be tested. Contracts at this level need a published notice [CPR-66] and quotes via the Portal [CPR-65]. The notice export starts in 2021 and matching is by name only, so 'no notice found' is a prompt to request contract evidence, not evidence that none exists.
 
-**Likelihood 3 Likely.** L3: one test flags suppliers above the publication threshold with no live notice [`$.tests.off_contract.counts.total`], including general procurement suppliers that the placement and grant tags do not explain [`$.tests.off_contract.counts.by_tag.general_procurement`]. The Reasonable Assurance opinion on Contract Letting argues the other way [A-01].
+**Likelihood 3 Likely.** L3: one test flags suppliers above the publication threshold with no live notice outside the placement tag, in general procurement [`$.tests.off_contract.counts.by_tag.general_procurement`], grants [`$.tests.off_contract.counts.by_tag.grant`], premises [`$.tests.off_contract.counts.by_tag.premises`] and agency staff [`$.tests.off_contract.counts.by_tag.agency_staff`]; analytics.json does not explain them away. Narrowing the population to these tags leaves the same single test, so the rubric row does not move. The Reasonable Assurance opinion on Contract Letting argues the other way [A-01].
 
-**Impact 3 Medium, on Compliance (litigation, regulatory, contract) (council scale: “Reasonable possibility of successful legal challenge. Reasonable possibility of regulatory interest.”).** C3: the test covers suppliers from the publication threshold up, the tier where a notice on the CDP and three Portal quotes are required [CPR-66] [CPR-65]; row C4 would need the Threshold-tied rules, which were not tested.
+**Impact 3 Medium, on Compliance (litigation, regulatory, contract) (council scale: “Reasonable possibility of successful legal challenge. Reasonable possibility of regulatory interest.”).** C3: the narrowed population still sits from the publication threshold up, the tier where a notice on the CDP and three Portal quotes are required [CPR-66] [CPR-65], across general procurement, grant, premises and agency staff suppliers [`$.tests.off_contract.gbp.by_tag.general_procurement`] [`$.tests.off_contract.gbp.by_tag.grant`]; row C4 would need the Threshold-tied rules, which were not tested, so the narrowing does not move the rubric row.
 
 **Score 9, Medium - High (Amber) [matrix: High].** Escalation: Seek assurance that identified controls are effective. Response: Allocate to Service Director to put in place Controls Assurance.
 
@@ -146,11 +149,15 @@ Where the council's papers disagree with themselves, the register uses one side 
 - CPR-66 (App B row B1, p12): “A contract notice must be published on the CDP”
 - CPR-65 (App B row B1, p12): “Invitations to quote must be sent via the Procurement Portal to at least three appropriate sources, including at least one SME* or VCSE* organisation and one local supplier”
 - CPR-07 (5.2.1, p3): “A register of contracts, including those in progress and those awarded, with key information such as the contract value, duration and supplier.”
-- `$.tests.off_contract.counts.total` = 637
 - `$.tests.off_contract.counts.by_tag.general_procurement` = 169
+- `$.tests.off_contract.counts.by_tag.grant` = 124
+- `$.tests.off_contract.counts.by_tag.premises` = 27
+- `$.tests.off_contract.counts.by_tag.agency_staff` = 1
 - A-01: Contract Letting (Finance, Property and Procurement), Reasonable Assurance, End of March 2025; data/committee/audit-completed-work-2024-25-annual.pdf p1
+- `$.tests.off_contract.gbp.by_tag.general_procurement` = 22,832,316.83
+- `$.tests.off_contract.gbp.by_tag.grant` = 5,876,513.55
 
-**Proposed focus.** Start with the general procurement suppliers in the list and the near-miss candidates; for each, request the contract, its award notice [CPR-66] and its entry on the contracts register [CPR-07]. Do not question suppliers below the publication threshold.
+**Proposed focus.** Test the no-live-notice suppliers outside the care and education placement tag: general procurement first, then grants, premises and agency staff, plus the near-miss candidates. For each, request the contract or grant agreement, its award notice [CPR-66] and its entry on the contracts register [CPR-07]. Leave placement suppliers to R-08. Do not question suppliers below the publication threshold.
 
 ### R-05 Payments to suppliers whose every matched notice ended before the spend window
 
@@ -248,15 +255,15 @@ Where the council's papers disagree with themselves, the register uses one side 
 
 Competition can be waived above the quote threshold only on urgency or Executive Director discretion with written reasons [CPR-21] [CPR-22], approved by the Monitoring Officer or S151 Officer [CPR-23] and fully documented [CPR-28]. No spend test can see a waiver; the evidence sits in council records.
 
-**Likelihood 3 Likely.** Auditor override (decision R-09): the auditor set likelihood 3. The rubric reading was L2, since the evidence is council records only [CPR-23] and the last audit on the theme, Contract Letting, was Reasonable Assurance [A-01].
+**Likelihood 2 Unlikely.** L2: the evidence is council records only, since no spend test can see a waiver [CPR-23] [CPR-28], and the last audit on the theme, Contract Letting, was Reasonable Assurance [A-01]. Set by the auditor (decision R-09): high stakes bear on impact, not likelihood.
 
 **Impact 3 Medium, on Compliance (litigation, regulatory, contract) (council scale: “Reasonable possibility of successful legal challenge. Reasonable possibility of regulatory interest.”).** C3: the waiver rules apply from the quote threshold tier [CPR-22]; exceptions above the Key Decision level go to the Executive [CPR-27], which would be row C4, but no metric shows waivers at that level.
 
-**Score 9, Medium - High (Amber) [matrix: High].** Escalation: Seek assurance that identified controls are effective. Response: Allocate to Service Director to put in place Controls Assurance.
-
-† D-09: would go to the Corporate Risk Register under Figure 4 (score 9 or above)
+**Score 6, Moderate.** Escalation: None. Response: Monitor risk.
 
 **Auditor override (revision 1):** likelihood 2 → 3. Auditor's comment: “[2026-10-08] likelihood 3: awards above £500,000 are rare but carry the highest stakes.”
+
+**Auditor override (revision 3):** likelihood 3 → 2. Auditor's comment: “[2026-10-09, Neil Doungsaeng] Likelihood 2, keep in scope. The spend data cannot show a waiver, so there is no evidence it is likely; high stakes affect impact, not likelihood.”
 
 **Evidence**
 
@@ -278,15 +285,15 @@ Decisions are recorded in `outputs/auditor-comments.md`: Approve, Reject or Chan
 
 | Risk | Decision | Comment | Status |
 |---|---|---|---|
-| R-01 | Approve | [2026-10-08] | approved |
-| R-02 | Approve | [2026-10-08] | approved |
-| R-03 | Approve | [2026-10-08] | approved |
-| R-04 | Approve | [2026-10-08] | approved |
-| R-05 | Approve | [2026-10-08] | approved |
-| R-06 | Approve | [2026-10-08] | approved |
-| R-07 | Approve | [2026-10-08] | approved |
-| R-08 | Approve | [2026-10-08] | approved |
-| R-09 | Change | [2026-10-08] likelihood 3: awards above £500,000 are rare but carry the highest stakes. | changed as asked (rev 2) |
-| GENERAL | Approve | [2026-10-08] R-10 (not in the register) rejected: grants will be covered by a separate review. | noted |
+| R-01 | Approve | [2026-10-09, Neil Doungsaeng] | approved |
+| R-02 | Approve | [2026-10-09, Neil Doungsaeng] Two separate tests flag it; score 8 already makes it the lowest priority, so sample fewer cases rather than lower the likelihood. | approved |
+| R-03 | Approve | [2026-10-09, Neil Doungsaeng] | approved |
+| R-04 | Change | [2026-10-09, Neil Doungsaeng] Keep all suppliers with no live notice in R-04 except care and education placements, which R-08 already covers. Grants, premises and agency staff stay in R-04 so they are still tested. | changed as asked (rev 3) |
+| R-05 | Approve | [2026-10-09, Neil Doungsaeng] | approved |
+| R-06 | Approve | [2026-10-09, Neil Doungsaeng] | approved |
+| R-07 | Approve | [2026-10-09, Neil Doungsaeng] | approved |
+| R-08 | Approve | [2026-10-09, Neil Doungsaeng] Keep likelihood 3 (challenge #5). Only one test supports it, the Reasonable Assurance opinion argues the other way, and placements have legitimate exceptions, so a missing notice is not "almost certain". | approved |
+| R-09 | Change | [2026-10-09, Neil Doungsaeng] Likelihood 2, keep in scope. The spend data cannot show a waiver, so there is no evidence it is likely; high stakes affect impact, not likelihood. | changed as asked (rev 3) |
+| GENERAL | Approve | [2026-10-09, Neil Doungsaeng] R-10 (grants) rejected as a separate risk because grants stay inside R-04; the Rules treat a grant as a contract, so they must not be excluded. Schools out of scope (challenge #8): this audit covers council purchasing; the school spend in the data is mainly council-funded placements already covered by R-08, and schools' own purchasing stays with their separate school audits. | noted |
 
-Gate: ready: every rated risk has a decision, applied in revision 2.
+Gate: ready: every rated risk has a decision, applied in revision 3.

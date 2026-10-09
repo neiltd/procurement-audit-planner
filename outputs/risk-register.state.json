@@ -1,11 +1,11 @@
 {
- "revision": 2,
- "built": "2026-10-08",
+ "revision": 3,
+ "built": "2026-10-09",
  "inputs": {
   "analytics": "880ee9ce0e684e30c1f425d60cb438de5ef54212354dcbb5f86f3f4869720489",
   "history": "190b3629dfb1071f9419f4bf20b0369c3aeab03c6582550728576f9c152c67de",
   "rules": "853190e939ab1ef2620e608a24b273b322a135b869cf3499e630fb62f5c6f301",
-  "risk-ratings": "6a3e2e5edef82f7e27bf44b2c732131b93ea2a7740b20276ada11384b1c30106"
+  "risk-ratings": "bdbdcb0551bec444d48b9b0f4b87ae1ae054dbab43dd36a4232f988dc4ae3c12"
  },
  "fingerprints": {
   "R-01": {
@@ -34,11 +34,11 @@
   },
   "R-04": {
    "title": "\"Suppliers above the publication threshold with no live Contracts Finder notice\"",
-   "description": "\"{{$.tests.off_contract.counts.total}} of {{$.tests.off_contract.population.suppliers_tested}} suppliers whose annualised estimate reaches {{$.thresholds.publication_threshold.value|gbp}} have no live notice matched by exact normalised name ({{$.tests.off_contract.counts.by_tag.general_procurement}} in general procurement); {{$.tests.off_contract.with_candidate_name}} more have a near-miss candidate name listed separately. Contracts at this level need a published notice [rule:CPR-66] and quotes via the Portal [rule:CPR-65]. The notice export starts in 2021 and matching is by name only, so 'no notice found' is a prompt to request contract evidence, not evidence that none exists.\"",
-   "likelihood": "{\"justification\": \"L3: one test flags suppliers above the publication threshold with no live notice [metric:$.tests.off_contract.counts.total], including general procurement suppliers that the placement and grant tags do not explain [metric:$.tests.off_contract.counts.by_tag.general_procurement]. The Reasonable Assurance opinion on Contract Letting argues the other way [history:A-01].\", \"score\": 3}",
-   "impact": "{\"criterion\": \"Compliance (litigation, regulatory, contract)\", \"justification\": \"C3: the test covers suppliers from the publication threshold up, the tier where a notice on the CDP and three Portal quotes are required [rule:CPR-66] [rule:CPR-65]; row C4 would need the Threshold-tied rules, which were not tested.\", \"score\": 3}",
+   "description": "\"Outside care and education placements, which R-08 covers, suppliers whose annualised estimate reaches {{$.thresholds.publication_threshold.value|gbp}} and have no live notice matched by exact normalised name are: {{$.tests.off_contract.counts.by_tag.general_procurement}} in general procurement ({{$.tests.off_contract.gbp.by_tag.general_procurement|gbp}} in the window), {{$.tests.off_contract.counts.by_tag.grant}} grant recipients ({{$.tests.off_contract.gbp.by_tag.grant|gbp}}), {{$.tests.off_contract.counts.by_tag.premises}} premises suppliers ({{$.tests.off_contract.gbp.by_tag.premises|gbp}}) and {{$.tests.off_contract.counts.by_tag.agency_staff}} agency staff supplier ({{$.tests.off_contract.gbp.by_tag.agency_staff|gbp}}); {{$.tests.off_contract.with_candidate_name}} suppliers across the full list have a near-miss candidate name listed separately. Grants stay in this risk: the auditor's scope decision keeps them here to be tested. Contracts at this level need a published notice [rule:CPR-66] and quotes via the Portal [rule:CPR-65]. The notice export starts in 2021 and matching is by name only, so 'no notice found' is a prompt to request contract evidence, not evidence that none exists.\"",
+   "likelihood": "{\"justification\": \"L3: one test flags suppliers above the publication threshold with no live notice outside the placement tag, in general procurement [metric:$.tests.off_contract.counts.by_tag.general_procurement], grants [metric:$.tests.off_contract.counts.by_tag.grant], premises [metric:$.tests.off_contract.counts.by_tag.premises] and agency staff [metric:$.tests.off_contract.counts.by_tag.agency_staff]; analytics.json does not explain them away. Narrowing the population to these tags leaves the same single test, so the rubric row does not move. The Reasonable Assurance opinion on Contract Letting argues the other way [history:A-01].\", \"score\": 3}",
+   "impact": "{\"criterion\": \"Compliance (litigation, regulatory, contract)\", \"justification\": \"C3: the narrowed population still sits from the publication threshold up, the tier where a notice on the CDP and three Portal quotes are required [rule:CPR-66] [rule:CPR-65], across general procurement, grant, premises and agency staff suppliers [metric:$.tests.off_contract.gbp.by_tag.general_procurement] [metric:$.tests.off_contract.gbp.by_tag.grant]; row C4 would need the Threshold-tied rules, which were not tested, so the narrowing does not move the rubric row.\", \"score\": 3}",
    "repeat_uplift": "null",
-   "proposed_focus": "\"Start with the general procurement suppliers in the list and the near-miss candidates; for each, request the contract, its award notice [rule:CPR-66] and its entry on the contracts register [rule:CPR-07]. Do not question suppliers below the publication threshold.\""
+   "proposed_focus": "\"Test the no-live-notice suppliers outside the care and education placement tag: general procurement first, then grants, premises and agency staff, plus the near-miss candidates. For each, request the contract or grant agreement, its award notice [rule:CPR-66] and its entry on the contracts register [rule:CPR-07]. Leave placement suppliers to R-08. Do not question suppliers below the publication threshold.\""
   },
   "R-05": {
    "title": "\"Payments to suppliers whose every matched notice ended before the spend window\"",
@@ -75,7 +75,7 @@
   "R-09": {
    "title": "\"Waivers and exceptions to the Rules not approved or recorded in advance\"",
    "description": "\"Competition can be waived above the quote threshold only on urgency or Executive Director discretion with written reasons [rule:CPR-21] [rule:CPR-22], approved by the Monitoring Officer or S151 Officer [rule:CPR-23] and fully documented [rule:CPR-28]. No spend test can see a waiver; the evidence sits in council records.\"",
-   "likelihood": "{\"justification\": \"Auditor override (decision R-09): the auditor set likelihood 3. The rubric reading was L2, since the evidence is council records only [rule:CPR-23] and the last audit on the theme, Contract Letting, was Reasonable Assurance [history:A-01].\", \"score\": 3}",
+   "likelihood": "{\"justification\": \"L2: the evidence is council records only, since no spend test can see a waiver [rule:CPR-23] [rule:CPR-28], and the last audit on the theme, Contract Letting, was Reasonable Assurance [history:A-01]. Set by the auditor (decision R-09): high stakes bear on impact, not likelihood.\", \"score\": 2}",
    "impact": "{\"criterion\": \"Compliance (litigation, regulatory, contract)\", \"justification\": \"C3: the waiver rules apply from the quote threshold tier [rule:CPR-22]; exceptions above the Key Decision level go to the Executive [rule:CPR-27], which would be row C4, but no metric shows waivers at that level.\", \"score\": 3}",
    "repeat_uplift": "null",
    "proposed_focus": "\"Request the waiver and exception register and test a sample for advance approval and written reasons [rule:CPR-24] [rule:CPR-30]; cross-check against suppliers flagged in the off-contract list [rule:CPR-66].\""
@@ -115,50 +115,50 @@
    "impact": 3
   },
   "R-09": {
-   "likelihood": 3,
+   "likelihood": 2,
    "impact": 3
   }
  },
  "applied_decisions": {
   "R-01": {
    "decision": "Approve",
-   "comment": "[2026-10-08]"
+   "comment": "[2026-10-09, Neil Doungsaeng]"
   },
   "R-02": {
    "decision": "Approve",
-   "comment": "[2026-10-08]"
+   "comment": "[2026-10-09, Neil Doungsaeng] Two separate tests flag it; score 8 already makes it the lowest priority, so sample fewer cases rather than lower the likelihood."
   },
   "R-03": {
    "decision": "Approve",
-   "comment": "[2026-10-08]"
+   "comment": "[2026-10-09, Neil Doungsaeng]"
   },
   "R-04": {
-   "decision": "Approve",
-   "comment": "[2026-10-08]"
+   "decision": "Change",
+   "comment": "[2026-10-09, Neil Doungsaeng] Keep all suppliers with no live notice in R-04 except care and education placements, which R-08 already covers. Grants, premises and agency staff stay in R-04 so they are still tested."
   },
   "R-05": {
    "decision": "Approve",
-   "comment": "[2026-10-08]"
+   "comment": "[2026-10-09, Neil Doungsaeng]"
   },
   "R-06": {
    "decision": "Approve",
-   "comment": "[2026-10-08]"
+   "comment": "[2026-10-09, Neil Doungsaeng]"
   },
   "R-07": {
    "decision": "Approve",
-   "comment": "[2026-10-08]"
+   "comment": "[2026-10-09, Neil Doungsaeng]"
   },
   "R-08": {
    "decision": "Approve",
-   "comment": "[2026-10-08]"
+   "comment": "[2026-10-09, Neil Doungsaeng] Keep likelihood 3 (challenge #5). Only one test supports it, the Reasonable Assurance opinion argues the other way, and placements have legitimate exceptions, so a missing notice is not \"almost certain\"."
   },
   "R-09": {
    "decision": "Change",
-   "comment": "[2026-10-08] likelihood 3: awards above £500,000 are rare but carry the highest stakes."
+   "comment": "[2026-10-09, Neil Doungsaeng] Likelihood 2, keep in scope. The spend data cannot show a waiver, so there is no evidence it is likely; high stakes affect impact, not likelihood."
   },
   "GENERAL": {
    "decision": "Approve",
-   "comment": "[2026-10-08] R-10 (not in the register) rejected: grants will be covered by a separate review."
+   "comment": "[2026-10-09, Neil Doungsaeng] R-10 (grants) rejected as a separate risk because grants stay inside R-04; the Rules treat a grant as a contract, so they must not be excluded. Schools out of scope (challenge #8): this audit covers council purchasing; the school spend in the data is mainly council-funded placements already covered by R-08, and schools' own purchasing stays with their separate school audits."
   }
  },
  "overrides": {
@@ -170,18 +170,29 @@
     "revision": 1,
     "decision": "R-09",
     "comment": "[2026-10-08] likelihood 3: awards above £500,000 are rare but carry the highest stakes."
+   },
+   {
+    "field": "likelihood",
+    "from": 3,
+    "to": 2,
+    "revision": 3,
+    "decision": "R-09",
+    "comment": "[2026-10-09, Neil Doungsaeng] Likelihood 2, keep in scope. The spend data cannot show a waiver, so there is no evidence it is likely; high stakes affect impact, not likelihood."
    }
   ]
  },
  "revision_summary": [
   "Responds to the decisions in `outputs/auditor-comments.md`.",
+  "GENERAL approved.",
+  "R-01 approved.",
   "R-02 approved.",
   "R-03 approved.",
-  "R-04 approved.",
   "R-05 approved.",
   "R-06 approved.",
   "R-07 approved.",
-  "R-08 approved."
+  "R-08 approved.",
+  "R-04: description changed, likelihood changed, impact changed, proposed_focus changed, as asked (\"[2026-10-09, Neil Doungsaeng] Keep all suppliers with no live notice in R-04 except care and education placements, which R-08 already covers. Grants, premises and agency staff stay in R-04 so they are still tested.\"). Narrowed to no-live-notice suppliers outside the care_education_placement tag (R-08 covers placements); grants, premises and agency staff stay in and are cited by tag. Scores unchanged: L3 and C3 rows do not move.",
+  "R-09: likelihood 3 → 2, as asked (\"[2026-10-09, Neil Doungsaeng] Likelihood 2, keep in scope. The spend data cannot show a waiver, so there is no evidence it is likely; high stakes affect impact, not likelihood.\"). Likelihood 3 to 2 as the auditor asked; justification cites the L2 row (council records only, last audit Reasonable)."
  ],
  "rated": {
   "R-01": {
@@ -210,7 +221,7 @@
    "impact": 3,
    "score": 9,
    "band": "Medium - High (Amber) [matrix: High]",
-   "decision": "Approve"
+   "decision": "Change"
   },
   "R-05": {
    "likelihood": 3,
@@ -241,16 +252,16 @@
    "decision": "Approve"
   },
   "R-09": {
-   "likelihood": 3,
+   "likelihood": 2,
    "impact": 3,
-   "score": 9,
-   "band": "Medium - High (Amber) [matrix: High]",
+   "score": 6,
+   "band": "Moderate",
    "decision": "Change"
   }
  },
  "dropped": [],
  "gate": {
   "ready": true,
-  "text": "ready: every rated risk has a decision, applied in revision 2."
+  "text": "ready: every rated risk has a decision, applied in revision 3."
  }
 }
